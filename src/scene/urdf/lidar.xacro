@@ -1,0 +1,33 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lidar">
+  <!-- lidar -->
+  <link name="lidar">
+    <visual>
+      <geometry>
+        <cylinder radius="${lidar_cylinder_radius}" length="${lidar_cylinder_length}" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <material name="red">
+        <color rgba="1.0 0.0 0.0 ${transparency}" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${lidar_cylinder_radius}" length="${lidar_cylinder_length}" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </collision>
+    <xacro:cylinder_inertial_matrix m="${lidar_mass}" r="${lidar_cylinder_radius}" h="${lidar_cylinder_length}" />
+  </link>
+
+  <!-- joint -->
+  <joint name="lidar_to_base_link" type="fixed">
+    <parent link="base_link" />
+    <child link="lidar" />
+    <origin xyz="0.0 0.0 ${base_box_size * 0.5 + lidar_cylinder_length * 0.5}" rpy="0.0 0.0 0.0" />
+    <axis xyz="0.0 0.0 1.0" />
+  </joint>
+
+  <gazebo reference="lidar">
+    <material>Gazebo/Red</material>
+  </gazebo>
+</robot>

@@ -1,0 +1,34 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="camera">
+  <!-- camera -->
+  <link name="camera">
+    <visual>
+      <geometry>
+        <cylinder radius="${camera_cylinder_radius}" length="${camera_cylinder_length}" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 ${transparency}" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${camera_cylinder_radius}" length="${camera_cylinder_length}" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </collision>
+    <xacro:cylinder_inertial_matrix m="${camera_mass}" r="${camera_cylinder_radius}" h="${camera_cylinder_length}" />
+  </link>
+
+  <!-- joint -->
+  <joint name="camera_to_base_link" type="fixed">
+    <parent link="base_link" />
+    <child link="camera" />
+    <origin xyz="0.0 ${base_box_size * 0.5 + camera_cylinder_length * 0.5} 0.0" rpy="${-PI * 0.5} 0.0 0.0" />
+    <axis xyz="0.0 0.0 1.0" />
+  </joint>
+
+  <gazebo reference="camera">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+</robot>
