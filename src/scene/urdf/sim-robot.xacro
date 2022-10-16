@@ -8,6 +8,33 @@
   <xacro:property name="camera_cylinder_length" value="0.05" />
   <xacro:property name="transparency" value="0.8" />
   <xacro:property name="PI" value="3.1415926535" />
+  <xacro:property name="foot_mass" value="0.001" />
+  <xacro:property name="base_mass" value="20.0" />
+  <xacro:property name="lidar_mass" value="5.0" />
+  <xacro:property name="imu_mass" value="1.0" />
+  <xacro:property name="camera_mass" value="1.0" />
+
+
+  <xacro:macro name="cylinder_inertial_matrix" params="m r h">
+    <inertial>
+      <mass value="${m}" />
+      <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0" iyy="${m*(3*r*r+h*h)/12}" iyz="0" izz="${m*r*r/2}" />
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="box_inertial_matrix" params="m l w h">
+    <inertial>
+      <mass value="${m}" />
+      <inertia ixx="${m*(h*h + l*l)/12}" ixy="0" ixz="0" iyy="${m*(w*w + l*l)/12}" iyz="0" izz="${m*(w*w + h*h)/12}" />
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="sphere_inertial_matrix" params="m r">
+    <inertial>
+      <mass value="${m}" />
+      <inertia ixx="${2*m*r*r/5}" ixy="0" ixz="0" iyy="${2*m*r*r/5}" iyz="0" izz="${2*m*r*r/5}" />
+    </inertial>
+  </xacro:macro>
 
   <!-- foot base link -->
   <link name="base_footprint">
@@ -19,6 +46,13 @@
         <color rgba="0.0 0.0 0.0 ${transparency}" />
       </material>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${foot_box_size} ${foot_box_size} ${foot_box_size}" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${foot_mass}" l="${foot_box_size}" w="${foot_box_size}" h="${foot_box_size}" />
   </link>
 
   <!-- base link -->
@@ -31,6 +65,13 @@
         <color rgba="1.0 1.0 1.0 ${transparency}" />
       </material>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${base_box_size} ${base_box_size} ${base_box_size}" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${base_mass}" l="${base_box_size}" w="${base_box_size}" h="${base_box_size}" />
   </link>
 
   <!-- joint -->
@@ -52,6 +93,13 @@
         <color rgba="1.0 0.0 0.0 ${transparency}" />
       </material>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${lidar_cylinder_radius}" length="${lidar_cylinder_length}" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </collision>
+    <xacro:cylinder_inertial_matrix m="${lidar_mass}" r="${lidar_cylinder_radius}" h="${lidar_cylinder_length}" />
   </link>
 
   <!-- joint -->
@@ -73,6 +121,13 @@
         <color rgba="0.0 1.0 0.0 ${transparency}" />
       </material>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${imu_box_size} ${imu_box_size} ${imu_box_size}" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${imu_mass}" l="${imu_box_size}" w="${imu_box_size}" h="${imu_box_size}" />
   </link>
 
   <!-- joint -->
@@ -94,6 +149,13 @@
         <color rgba="0.0 0.0 1.0 ${transparency}" />
       </material>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${camera_cylinder_radius}" length="${camera_cylinder_length}" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </collision>
+    <xacro:cylinder_inertial_matrix m="${camera_mass}" r="${camera_cylinder_radius}" h="${camera_cylinder_length}" />
   </link>
 
   <!-- joint -->
@@ -103,5 +165,21 @@
     <origin xyz="0.0 ${base_box_size * 0.5 + camera_cylinder_length * 0.5} 0.0" rpy="${-PI * 0.5} 0.0 0.0" />
     <axis xyz="0.0 0.0 1.0" />
   </joint>
+
+  <gazebo reference="base_footprint">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="base_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+  <gazebo reference="lidar">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <gazebo reference="imu">
+    <material>Gazebo/Green</material>
+  </gazebo>
+  <gazebo reference="camera">
+    <material>Gazebo/Blue</material>
+  </gazebo>
 
 </robot>
