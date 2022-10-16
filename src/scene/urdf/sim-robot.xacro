@@ -55,6 +55,10 @@
     <xacro:box_inertial_matrix m="${foot_mass}" l="${foot_box_size}" w="${foot_box_size}" h="${foot_box_size}" />
   </link>
 
+  <gazebo reference="base_footprint">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <!-- base link -->
   <link name="base_link">
     <visual>
@@ -74,6 +78,10 @@
     <xacro:box_inertial_matrix m="${base_mass}" l="${base_box_size}" w="${base_box_size}" h="${base_box_size}" />
   </link>
 
+  <gazebo reference="base_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+
   <!-- joint -->
   <joint name="base_to_foot" type="fixed">
     <parent link="base_footprint" />
@@ -82,104 +90,8 @@
     <axis xyz="0.0 0.0 1.0" />
   </joint>
 
-  <!-- lidar -->
-  <link name="lidar">
-    <visual>
-      <geometry>
-        <cylinder radius="${lidar_cylinder_radius}" length="${lidar_cylinder_length}" />
-      </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-      <material name="red">
-        <color rgba="1.0 0.0 0.0 ${transparency}" />
-      </material>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder radius="${lidar_cylinder_radius}" length="${lidar_cylinder_length}" />
-      </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-    </collision>
-    <xacro:cylinder_inertial_matrix m="${lidar_mass}" r="${lidar_cylinder_radius}" h="${lidar_cylinder_length}" />
-  </link>
-
-  <!-- joint -->
-  <joint name="lidar_to_base_link" type="fixed">
-    <parent link="base_link" />
-    <child link="lidar" />
-    <origin xyz="0.0 0.0 ${base_box_size * 0.5 + lidar_cylinder_length * 0.5}" rpy="0.0 0.0 0.0" />
-    <axis xyz="0.0 0.0 1.0" />
-  </joint>
-
-  <!-- imu -->
-  <link name="imu">
-    <visual>
-      <geometry>
-        <box size="${imu_box_size} ${imu_box_size} ${imu_box_size}" />
-      </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-      <material name="green">
-        <color rgba="0.0 1.0 0.0 ${transparency}" />
-      </material>
-    </visual>
-    <collision>
-      <geometry>
-        <box size="${imu_box_size} ${imu_box_size} ${imu_box_size}" />
-      </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-    </collision>
-    <xacro:box_inertial_matrix m="${imu_mass}" l="${imu_box_size}" w="${imu_box_size}" h="${imu_box_size}" />
-  </link>
-
-  <!-- joint -->
-  <joint name="imu_to_base_link" type="fixed">
-    <parent link="base_link" />
-    <child link="imu" />
-    <origin xyz="${base_box_size * 0.5 + imu_box_size * 0.5} 0.0 0.0" rpy="${PI} 0.0 0.0" />
-    <axis xyz="0.0 0.0 1.0" />
-  </joint>
-
-  <!-- camera -->
-  <link name="camera">
-    <visual>
-      <geometry>
-        <cylinder radius="${camera_cylinder_radius}" length="${camera_cylinder_length}" />
-      </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-      <material name="blue">
-        <color rgba="0.0 0.0 1.0 ${transparency}" />
-      </material>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder radius="${camera_cylinder_radius}" length="${camera_cylinder_length}" />
-      </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-    </collision>
-    <xacro:cylinder_inertial_matrix m="${camera_mass}" r="${camera_cylinder_radius}" h="${camera_cylinder_length}" />
-  </link>
-
-  <!-- joint -->
-  <joint name="camera_to_base_link" type="fixed">
-    <parent link="base_link" />
-    <child link="camera" />
-    <origin xyz="0.0 ${base_box_size * 0.5 + camera_cylinder_length * 0.5} 0.0" rpy="${-PI * 0.5} 0.0 0.0" />
-    <axis xyz="0.0 0.0 1.0" />
-  </joint>
-
-  <gazebo reference="base_footprint">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="base_link">
-    <material>Gazebo/White</material>
-  </gazebo>
-  <gazebo reference="lidar">
-    <material>Gazebo/Red</material>
-  </gazebo>
-  <gazebo reference="imu">
-    <material>Gazebo/Green</material>
-  </gazebo>
-  <gazebo reference="camera">
-    <material>Gazebo/Blue</material>
-  </gazebo>
+  <xacro:include filename="lidar.xacro" />
+  <xacro:include filename="imu.xacro" />
+  <xacro:include filename="camera.xacro" />
 
 </robot>
