@@ -52,7 +52,6 @@
       </geometry>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     </collision>
-    <xacro:box_inertial_matrix m="${foot_mass}" l="${foot_box_size}" w="${foot_box_size}" h="${foot_box_size}" />
   </link>
 
   <gazebo reference="base_footprint">
