@@ -46,7 +46,6 @@
       </geometry>
       <material name="white">
         <color rgba="1.0 1.0 1.0 ${transparency}" />
-        <texture filename="/home/csl/Pictures/2022-10-14_16-32.png" />
       </material>
     </visual>
     <collision>
