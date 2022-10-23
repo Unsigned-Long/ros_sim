@@ -22,8 +22,8 @@
       <plugin name="gazebo_camera" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>/camera</cameraName>
-        <imageTopicName>image_raw</imageTopicName>
+        <cameraName>/sim_camera</cameraName>
+        <imageTopicName>image</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>camera</frameName>
         <hackBaseline>0.07</hackBaseline>
