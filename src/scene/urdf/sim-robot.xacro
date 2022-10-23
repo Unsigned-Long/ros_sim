@@ -73,4 +73,6 @@
   <xacro:include filename="imu.xacro" />
   <xacro:include filename="camera.xacro" />
 
+  <xacro:include filename="sensor-laser.xacro" />
+
 </robot>

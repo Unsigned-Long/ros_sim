@@ -1,0 +1,42 @@
+<robot name="my_sensors" xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!-- 雷达 -->
+  <gazebo reference="lidar">
+    <sensor type="ray" name="rplidar">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>5.5</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>1800</samples> 
+            <resolution>0.2</resolution>
+            <min_angle>-${PI}</min_angle>
+            <max_angle> ${PI}</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>16</samples>
+            <resolution>2</resolution>
+            <min_angle>-${15*PI/180.0}</min_angle>
+            <max_angle> ${15*PI/180.0}</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.001</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.0</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>base_footprint</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>
