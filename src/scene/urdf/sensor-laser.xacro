@@ -1,6 +1,5 @@
 <robot name="my_sensors" xmlns:xacro="http://wiki.ros.org/xacro">
 
-  <!-- 雷达 -->
   <gazebo reference="lidar">
     <sensor type="ray" name="vodyne16">
       <pose>0 0 0 0 0 0</pose>
