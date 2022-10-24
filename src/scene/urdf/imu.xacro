@@ -23,7 +23,7 @@
   <joint name="imu_to_base_link" type="fixed">
     <parent link="base_link" />
     <child link="imu" />
-    <origin xyz="${base_box_size * 0.5 + imu_box_size * 0.5} 0.0 0.0" rpy="${PI} 0.0 0.0" />
+    <origin xyz="0.0 ${base_box_size * 0.5 + imu_box_size * 0.5} 0.0" rpy="0.0 0.0 0.0" />
     <axis xyz="0.0 0.0 1.0" />
   </joint>
 
