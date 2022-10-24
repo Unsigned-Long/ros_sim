@@ -166,7 +166,7 @@ target_include_directories(
 target_link_libraries(
         gen_traj
         ${catkin_LIBRARIES}
-        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/slam-scene-viewer/lib/libpcl-viewer.so
+        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/slam-scene-viewer-build/lib/libpcl-viewer.so
         ${PCL_LIBRARIES}
         pthread
 )
