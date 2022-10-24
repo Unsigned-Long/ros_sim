@@ -1,5 +1,5 @@
 <launch>
-    <param name="robot_description" command="$(find xacro)/xacro $(find scene)/urdf/sim-robot.xacro" />
+    <param name="robot_description" command="$(find xacro)/xacro $(find scene)/model/xacro/sim-robot.xacro" />
 
     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find scene)/config/rviz-config.rviz" />
 
@@ -12,5 +12,5 @@
 
     <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model sim-robot -param robot_description" />
 
-    <node pkg="scene" name="sim_robot_state" type="sim_robot_state" output="screen" />
+    <!-- <node pkg="scene" name="sim_robot_state" type="sim_robot_state" output="screen" /> -->
 </launch>
