@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(scene)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++17)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -14,6 +14,7 @@ find_package(
         sensor_msgs
         std_msgs
         tf
+        pcl_ros
 )
 
 ## System dependencies are found with CMake's conventions
@@ -137,6 +138,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(sim_robot_state src/main.cpp)
+add_executable(gen_traj src/gen_traj.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -149,8 +151,24 @@ add_executable(sim_robot_state src/main.cpp)
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(sim_robot_state
+target_link_libraries(
+        sim_robot_state
         ${catkin_LIBRARIES}
+)
+
+find_package(PCL REQUIRED)
+
+target_include_directories(
+        gen_traj PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/slam-scene-viewer/src/include
+        ${PCL_INCLUDE_DIRS}
+)
+target_link_libraries(
+        gen_traj
+        ${catkin_LIBRARIES}
+        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/slam-scene-viewer/lib/libpcl-viewer.so
+        ${PCL_LIBRARIES}
+        pthread
 )
 
 #############

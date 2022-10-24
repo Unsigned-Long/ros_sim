@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="scene" type="gen_traj" name="gen_traj" output="screen"/>
+</launch>
