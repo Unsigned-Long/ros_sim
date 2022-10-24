@@ -7,7 +7,7 @@
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name" value="$(find scene)/world/sim-scene.world" />
+        <arg name="world_name" value="$(find scene)/world/sim-scene.sdf" />
     </include>
 
     <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model sim-robot -param robot_description" />

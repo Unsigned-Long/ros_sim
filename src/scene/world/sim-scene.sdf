@@ -54,12 +54,6 @@
               <size>100 100</size>
             </plane>
           </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-          </material>
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
@@ -309,23 +303,23 @@
         <trajectory id="0" type="square">
           <waypoint>
             <time>0.0</time>
-            <pose>-1 -1 1 0 0 0</pose>
+            <pose>-1 -1 0.1 0 0 0</pose>
           </waypoint>
           <waypoint>
             <time>1.0</time>
-            <pose>-1 1 1 0 0 0</pose>
+            <pose>-1 1 0.1 0 0 0</pose>
           </waypoint>
           <waypoint>
             <time>2.0</time>
-            <pose>1 1 1 0 0 0</pose>
+            <pose>1 1 0.1 0 0 0</pose>
           </waypoint>
           <waypoint>
             <time>3.0</time>
-            <pose>1 -1 1 0 0 0</pose>
+            <pose>1 -1 0.1 0 0 0</pose>
           </waypoint>
           <waypoint>
             <time>4.0</time>
-            <pose>-1 -1 1 0 0 0</pose>
+            <pose>-1 -1 0.1 0 0 0</pose>
           </waypoint>
         </trajectory>
       </script>
