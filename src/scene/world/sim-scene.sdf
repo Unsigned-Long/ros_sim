@@ -31,7 +31,7 @@
           <surface>
             <contact>
               <collide_bitmask>65535</collide_bitmask>
-              <ode />
+              <ode/>
             </contact>
             <friction>
               <ode>
@@ -39,10 +39,10 @@
                 <mu2>50</mu2>
               </ode>
               <torsional>
-                <ode />
+                <ode/>
               </torsional>
             </friction>
-            <bounce />
+            <bounce/>
           </surface>
           <max_contacts>10</max_contacts>
         </collision>
@@ -62,7 +62,7 @@
     </model>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
-    <atmosphere type='adiabatic' />
+    <atmosphere type='adiabatic'/>
     <physics type='ode'>
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
@@ -73,7 +73,7 @@
       <background>0.7 0.7 0.7 1</background>
       <shadows>1</shadows>
     </scene>
-    <wind />
+    <wind/>
     <spherical_coordinates>
       <surface_model>EARTH_WGS84</surface_model>
       <latitude_deg>0</latitude_deg>
@@ -182,6 +182,11 @@
       </attenuation>
       <cast_shadows>0</cast_shadows>
       <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
     </light>
     <light name='user_point_light_1' type='point'>
       <pose>-6.51847 3.73171 1 0 -0 0</pose>
@@ -195,6 +200,11 @@
       </attenuation>
       <cast_shadows>0</cast_shadows>
       <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
     </light>
     <light name='user_point_light_2' type='point'>
       <pose>-0.068198 4.36726 1 0 -0 0</pose>
@@ -208,6 +218,11 @@
       </attenuation>
       <cast_shadows>0</cast_shadows>
       <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
     </light>
     <light name='user_point_light_3' type='point'>
       <pose>0.201981 -0.001022 1 0 -0 0</pose>
@@ -221,6 +236,11 @@
       </attenuation>
       <cast_shadows>0</cast_shadows>
       <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
     </light>
     <light name='user_point_light_4' type='point'>
       <pose>-3.29129 5.27025 1 0 -0 0</pose>
@@ -234,12 +254,27 @@
       </attenuation>
       <cast_shadows>0</cast_shadows>
       <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
     </light>
     <state world_name='default'>
-      <sim_time>367 600000000</sim_time>
-      <real_time>373 982340236</real_time>
-      <wall_time>1666582507 286381230</wall_time>
-      <iterations>367600</iterations>
+      <sim_time>411 983000000</sim_time>
+      <real_time>44 503563906</real_time>
+      <wall_time>1666603457 12326418</wall_time>
+      <iterations>44383</iterations>
+      <model name='animated_box'>
+        <pose>-0.954095 -1.03932 0.1 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='base_footprint'>
+          <pose>-0.954095 -1.03932 0.1 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -251,10 +286,10 @@
         </link>
       </model>
       <model name='sim-scene'>
-        <pose>-3.3181 2.84955 0 0 -0 0</pose>
+        <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose>4e-06 0 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -281,14 +316,12 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>-2.43047 -5.14827 15.2649 -0 1.0618 1.43057</pose>
+        <pose>19.0751 -13.6713 13.6667 0 0.349796 2.31056</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-
-    <actor name="animated_box">
-      <!-- paster the sdf sim-robot file's 'link' node here -->
+    <actor name='animated_box'>
       <link name='base_footprint'>
         <inertial>
           <pose>0.005556 0.005556 0.127778 0 -0 0</pose>
@@ -311,12 +344,17 @@
           </geometry>
           <surface>
             <contact>
-              <ode />
+              <ode/>
             </contact>
             <friction>
-              <ode />
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
             </friction>
+            <bounce/>
           </surface>
+          <max_contacts>10</max_contacts>
         </collision>
         <collision name='base_footprint_fixed_joint_lump__base_link_collision_1'>
           <pose>0 0 0.1 0 -0 0</pose>
@@ -327,12 +365,17 @@
           </geometry>
           <surface>
             <contact>
-              <ode />
+              <ode/>
             </contact>
             <friction>
-              <ode />
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
             </friction>
+            <bounce/>
           </surface>
+          <max_contacts>10</max_contacts>
         </collision>
         <collision name='base_footprint_fixed_joint_lump__camera_collision_2'>
           <pose>0.15 0 0.1 0 -0 0</pose>
@@ -343,12 +386,17 @@
           </geometry>
           <surface>
             <contact>
-              <ode />
+              <ode/>
             </contact>
             <friction>
-              <ode />
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
             </friction>
+            <bounce/>
           </surface>
+          <max_contacts>10</max_contacts>
         </collision>
         <collision name='base_footprint_fixed_joint_lump__imu_collision_3'>
           <pose>0 0.15 0.1 0 -0 0</pose>
@@ -359,12 +407,17 @@
           </geometry>
           <surface>
             <contact>
-              <ode />
+              <ode/>
             </contact>
             <friction>
-              <ode />
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
             </friction>
+            <bounce/>
           </surface>
+          <max_contacts>10</max_contacts>
         </collision>
         <collision name='base_footprint_fixed_joint_lump__lidar_collision_4'>
           <pose>0 0 0.25 0 -0 0</pose>
@@ -376,12 +429,17 @@
           </geometry>
           <surface>
             <contact>
-              <ode />
+              <ode/>
             </contact>
             <friction>
-              <ode />
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
             </friction>
+            <bounce/>
           </surface>
+          <max_contacts>10</max_contacts>
         </collision>
         <visual name='base_footprint_visual'>
           <pose>0 0 0 0 -0 0</pose>
@@ -505,6 +563,7 @@
             <frameName>imu</frameName>
           </plugin>
           <pose>0 0.15 0.1 0 -0 0</pose>
+          <imu/>
         </sensor>
         <sensor name='vodyne16' type='ray'>
           <visualize>0</visualize>
@@ -541,34 +600,38 @@
           </plugin>
           <pose>0 0 0.25 0 -0 0</pose>
         </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
       </link>
-      <!-- paster the trajectory script here -->
       <script>
-        <loop>true</loop>
-        <auto_start>true</auto_start>
-        <trajectory id="0" type="square">
+        <loop>1</loop>
+        <auto_start>1</auto_start>
+        <trajectory id='0' type='square'>
           <waypoint>
-            <time>0.0</time>
-            <pose>-1 -1 0.1 0 0 0</pose>
+            <time>0</time>
+            <pose>-1 -1 0.1 0 -0 0</pose>
           </waypoint>
           <waypoint>
-            <time>1.0</time>
-            <pose>-1 1 0.1 0 0 0</pose>
+            <time>1</time>
+            <pose>-1 1 0.1 0 -0 0</pose>
           </waypoint>
           <waypoint>
-            <time>2.0</time>
-            <pose>1 1 0.1 0 0 0</pose>
+            <time>2</time>
+            <pose>1 1 0.1 0 -0 0</pose>
           </waypoint>
           <waypoint>
-            <time>3.0</time>
-            <pose>1 -1 0.1 0 0 0</pose>
+            <time>3</time>
+            <pose>1 -1 0.1 0 -0 0</pose>
           </waypoint>
           <waypoint>
-            <time>4.0</time>
-            <pose>-1 -1 0.1 0 0 0</pose>
+            <time>4</time>
+            <pose>-1 -1 0.1 0 -0 0</pose>
           </waypoint>
         </trajectory>
       </script>
+      <skin>
+        <filename>__default__</filename>
+      </skin>
     </actor>
   </world>
 </sdf>
