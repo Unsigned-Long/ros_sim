@@ -32,6 +32,29 @@ std::string readString(std::fstream &file) {
     return str;
 }
 
+void SavePoseToSDF(const std::vector<ns_viewer::Posed> &poseSeq, const std::string &filename) {
+    std::ofstream file(filename, std::ios::out);
+    file << "<script>" << std::endl;
+    file << "<loop>1</loop>" << std::endl;
+    file << "<auto_start>1</auto_start>" << std::endl;
+    file << "<trajectory id='0' type='square'>" << std::endl;
+    for (const auto &pose: poseSeq) {
+        file << "<waypoint>" << std::endl;
+        file << "<time>" << pose.timeStamp << "</time>" << std::endl;
+        file << "<pose>"
+             << pose.translation(0)
+             << pose.translation(1)
+             << pose.translation(2)
+             << 0.0 << 0.0 << 0.0
+             << "</pose>" << std::endl;
+        file << "</waypoint>" << std::endl;
+    }
+    file << "</trajectory>" << std::endl;
+    file << "</script>" << std::endl;
+
+    file.close();
+}
+
 int main(int argc, char *argv[]) {
     ros::init(argc, argv, "gen_traj");
     std::fstream file("/home/csl/ros_ws/sim-scene/src/scene/trajectory/trajectory/trajectory.txt", std::ios::in);
@@ -56,11 +79,12 @@ int main(int argc, char *argv[]) {
                 dVec.at(i * 16 + 8), dVec.at(i * 16 + 9), dVec.at(i * 16 + 10), dVec.at(i * 16 + 11),
                 dVec.at(i * 16 + 12), dVec.at(i * 16 + 13), dVec.at(i * 16 + 14), dVec.at(i * 16 + 15);
         mat.topLeftCorner<3, 3>() /= SCALE_FACTOR;
-        pose.at(i) = ns_viewer::Posed(mat);
+        pose.at(i) = ns_viewer::Posed(mat, i / 20.0);
         viewer.AddPose(pose.at(i).cast<float>());
         LOG_VAR(i, mat);
     }
     viewer.RunSingleThread();
+    SavePoseToSDF(pose, "/home/csl/ros_ws/sim-scene/src/scene/trajectory/trajectory/trajectory.xml");
     ros::shutdown();
     return 0;
 }
