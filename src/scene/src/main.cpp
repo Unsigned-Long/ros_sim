@@ -1,42 +1,42 @@
-//
-// Created by csl on 10/16/22.
-//
-
-#include "geometry_msgs/Quaternion.h"
-#include "ros/ros.h"
-#include "tf2/LinearMath/Quaternion.h"
-#include "tf2_msgs/TFMessage.h"
+#include <ros/ros.h>
+#include <sensor_msgs/JointState.h>
+#include <string>
+#include <tf/transform_broadcaster.h>
 
 int main(int argc, char **argv) {
-  ros::init(argc, argv, "scene_node");
-  ros::NodeHandle handler;
-  auto statePublisher = handler.advertise<tf2_msgs::TFMessage>("/tf", 10);
-  ros::Rate r(5);
+  ros::init(argc, argv, "sim_robot_state");
+  ros::NodeHandle n;
 
-  double yPos = 0.0;
+  tf::TransformBroadcaster broadcaster;
+  ros::Rate loop_rate(30);
+
+  const double degree = M_PI / 180;
+
+  // robot state
+  double angle = 0;
+
+  // message declarations
+  geometry_msgs::TransformStamped odom_trans;
+  odom_trans.header.frame_id = "map";
+  odom_trans.child_frame_id = "base_footprint";
+
   while (ros::ok()) {
-    tf2_msgs::TFMessage msg;
-    msg.transforms.resize(1);
-    auto &transform = msg.transforms.front();
-    transform.header.stamp = ros::Time::now();
-    transform.header.seq = 100;
-    transform.header.frame_id = "map";
-    transform.child_frame_id = "base_footprint";
-    tf2::Quaternion qtn;
-    transform.transform.rotation.x = qtn.getX();
-    transform.transform.rotation.y = qtn.getY();
-    transform.transform.rotation.z = qtn.getZ();
-    transform.transform.rotation.w = qtn.getW();
-    transform.transform.translation.x = 0.0;
-    transform.transform.translation.y = yPos;
-    transform.transform.translation.z = 0.0;
+    // update transform
+    odom_trans.header.stamp = ros::Time::now();
+    odom_trans.transform.translation.x = cos(angle) * 2;
+    odom_trans.transform.translation.y = sin(angle) * 2;
+    odom_trans.transform.translation.z = 0.0;
+    odom_trans.transform.rotation = tf::createQuaternionMsgFromYaw(angle + M_PI / 2);
 
-    yPos += 0.1;
-    statePublisher.publish(msg);
-    ros::spinOnce();
-    r.sleep();
+    // send the joint state and transform
+    broadcaster.sendTransform(odom_trans);
+
+    // Create new robot state
+    angle += degree / 4;
+
+    // This will adjust as needed per iteration
+    loop_rate.sleep();
   }
 
-  ros::shutdown();
   return 0;
 }
