@@ -218,7 +218,7 @@
         <pose>0 0.15 0.1 0 -0 0</pose>
       </sensor>
       <sensor name='vodyne16' type='ray'>
-        <visualize>1</visualize>
+        <visualize>0</visualize>
         <update_rate>5.5</update_rate>
         <ray>
           <scan>
