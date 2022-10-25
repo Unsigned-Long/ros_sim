@@ -42,10 +42,10 @@ void SavePoseToSDF(const std::vector<ns_viewer::Posed> &poseSeq, const std::stri
         file << "<waypoint>" << std::endl;
         file << "<time>" << pose.timeStamp << "</time>" << std::endl;
         file << "<pose>"
-             << pose.translation(0)
-             << pose.translation(1)
-             << pose.translation(2)
-             << 0.0 << 0.0 << 0.0
+             << pose.translation(0) << ' '
+             << pose.translation(1) << ' '
+             << pose.translation(2) << ' '
+             << 0.0 << ' ' << 0.0 << ' ' << 0.0
              << "</pose>" << std::endl;
         file << "</waypoint>" << std::endl;
     }
@@ -57,7 +57,7 @@ void SavePoseToSDF(const std::vector<ns_viewer::Posed> &poseSeq, const std::stri
 
 int main(int argc, char *argv[]) {
     ros::init(argc, argv, "gen_traj");
-    std::fstream file("/home/csl/ros_ws/sim-scene/src/scene/trajectory/trajectory/trajectory.txt", std::ios::in);
+    std::fstream file("/home/csl/ros_ws/sim-scene/src/model/trajectory/trajectory.txt", std::ios::in);
     auto str = readString(file);
     file.close();
 
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
         LOG_VAR(i, mat);
     }
     viewer.RunSingleThread();
-    SavePoseToSDF(pose, "/home/csl/ros_ws/sim-scene/src/scene/trajectory/trajectory/trajectory.xml");
+    SavePoseToSDF(pose, "/home/csl/ros_ws/sim-scene/src/model/trajectory/trajectory.xml");
     ros::shutdown();
     return 0;
 }
