@@ -138,7 +138,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(sim_robot_state src/main.cpp)
-add_executable(gen_traj src/gen_traj.cpp)
+add_executable(generate_actor src/gen_traj.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -159,16 +159,17 @@ target_link_libraries(
 find_package(PCL REQUIRED)
 
 target_include_directories(
-        gen_traj PUBLIC
+        generate_actor PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/slam-scene-viewer/src/include
         ${PCL_INCLUDE_DIRS}
 )
 target_link_libraries(
-        gen_traj
+        generate_actor
         ${catkin_LIBRARIES}
         ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/slam-scene-viewer-build/lib/libpcl-viewer.so
         ${PCL_LIBRARIES}
         pthread
+        tinyxml2
 )
 
 #############

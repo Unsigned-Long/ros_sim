@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="scene" type="generate_actor" name="generate_actor" output="screen"/>
+</launch>
