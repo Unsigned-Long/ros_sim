@@ -37,15 +37,16 @@ void SavePoseToSDF(const std::vector<ns_viewer::Posed> &poseSeq, const std::stri
     file << "<script>" << std::endl;
     file << "<loop>1</loop>" << std::endl;
     file << "<auto_start>1</auto_start>" << std::endl;
-    file << "<trajectory id='0' type='square'>" << std::endl;
+    file << "<trajectory id='0' type='sim-traj'>" << std::endl;
     for (const auto &pose: poseSeq) {
+        auto euler = pose.rotation.eulerAngles(0, 1, 2);
         file << "<waypoint>" << std::endl;
         file << "<time>" << pose.timeStamp << "</time>" << std::endl;
         file << "<pose>"
              << pose.translation(0) << ' '
              << pose.translation(1) << ' '
              << pose.translation(2) << ' '
-             << 0.0 << ' ' << 0.0 << ' ' << 0.0
+             << euler(0) << ' ' << euler(1) << ' ' << euler(2)
              << "</pose>" << std::endl;
         file << "</waypoint>" << std::endl;
     }
@@ -57,7 +58,7 @@ void SavePoseToSDF(const std::vector<ns_viewer::Posed> &poseSeq, const std::stri
 
 int main(int argc, char *argv[]) {
     ros::init(argc, argv, "gen_traj");
-    std::fstream file("/home/csl/ros_ws/sim-scene/src/model/trajectory/trajectory.txt", std::ios::in);
+    std::fstream file("/home/csl/ros_ws/sim-scene/src/scene/model/trajectory/trajectory.txt", std::ios::in);
     auto str = readString(file);
     file.close();
 
@@ -79,12 +80,12 @@ int main(int argc, char *argv[]) {
                 dVec.at(i * 16 + 8), dVec.at(i * 16 + 9), dVec.at(i * 16 + 10), dVec.at(i * 16 + 11),
                 dVec.at(i * 16 + 12), dVec.at(i * 16 + 13), dVec.at(i * 16 + 14), dVec.at(i * 16 + 15);
         mat.topLeftCorner<3, 3>() /= SCALE_FACTOR;
-        pose.at(i) = ns_viewer::Posed(mat, i / 20.0);
+        pose.at(i) = ns_viewer::Posed(mat, i / 10.0);
         viewer.AddPose(pose.at(i).cast<float>());
         LOG_VAR(i, mat);
     }
     viewer.RunSingleThread();
-    SavePoseToSDF(pose, "/home/csl/ros_ws/sim-scene/src/model/trajectory/trajectory.xml");
+    SavePoseToSDF(pose, "/home/csl/ros_ws/sim-scene/src/scene/model/trajectory/trajectory.xml");
     ros::shutdown();
     return 0;
 }
