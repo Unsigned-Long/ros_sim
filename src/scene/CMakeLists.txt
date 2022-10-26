@@ -156,19 +156,12 @@ target_link_libraries(
         ${catkin_LIBRARIES}
 )
 
-find_package(PCL REQUIRED)
-
 target_include_directories(
         generate_actor PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/slam-scene-viewer/src/include
-        ${PCL_INCLUDE_DIRS}
 )
 target_link_libraries(
         generate_actor
         ${catkin_LIBRARIES}
-        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/slam-scene-viewer-build/lib/libpcl-viewer.so
-        ${PCL_LIBRARIES}
-        pthread
         tinyxml2
 )
 

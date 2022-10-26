@@ -2,7 +2,6 @@
 #include <eigen3/Eigen/Geometry>
 #include <ros/ros.h>
 #include "artwork/logger/logger.h"
-#include "pcl-viewer/scene_viewer.h"
 #include "tinyxml2.h"
 
 std::vector<std::string> splitString(const std::string &str, char splitor, bool ignoreEmpty = true) {
