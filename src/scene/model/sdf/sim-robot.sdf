@@ -214,6 +214,7 @@
           <xyzOffset>0 0 0</xyzOffset>
           <rpyOffset>0 0 0</rpyOffset>
           <frameName>imu</frameName>
+          <initialOrientationAsReference>0</initialOrientationAsReference>
         </plugin>
         <pose>0 0.15 0.1 0 -0 0</pose>
       </sensor>
