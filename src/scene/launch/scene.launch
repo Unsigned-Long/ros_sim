@@ -2,13 +2,16 @@
     <param name="robot_description" command="$(find xacro)/xacro $(find scene)/model/xacro/sim-robot.xacro" />
 
     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find scene)/config/rviz-config.rviz" />
-
+    
     <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" />
+    
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
-
+    
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="world_name" value="$(find scene)/model/sdf/sim-scene.sdf" />
     </include>
+    
+    <!-- <node pkg="rqt_plot" type="rqt_plot" name="rqt_plot" args="/sim_imu/gyro_acce/angular_velocity /sim_imu/gyro_acce/linear_acceleration" />  -->
 
     <!-- <node pkg="scene" name="sim_robot_state" type="sim_robot_state" output="screen" /> -->
 </launch>
