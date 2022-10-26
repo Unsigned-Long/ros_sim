@@ -4,7 +4,7 @@
     <sensor type="ray" name="vodyne16">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
-      <update_rate>5.5</update_rate>
+      <update_rate>10.0</update_rate>
       <ray>
         <scan>
           <horizontal>
@@ -28,7 +28,7 @@
         <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
-          <stddev>0.005</stddev>
+          <stddev>0.000</stddev>
         </noise>
       </ray>
       <plugin name="gazebo_rplidar" filename="libgazebo_ros_velodyne_laser.so">

@@ -203,13 +203,13 @@
       <gravity>1</gravity>
       <sensor name='imu_sensor' type='imu'>
         <always_on>1</always_on>
-        <update_rate>100</update_rate>
+        <update_rate>400</update_rate>
         <visualize>1</visualize>
         <topic>__default_topic__</topic>
         <plugin name='imu_plugin' filename='libgazebo_ros_imu_sensor.so'>
           <topicName>/sim_imu/gyro_acce</topicName>
           <bodyName>imu</bodyName>
-          <updateRateHZ>100.0</updateRateHZ>
+          <updateRateHZ>400.0</updateRateHZ>
           <gaussianNoise>0.0</gaussianNoise>
           <xyzOffset>0 0 0</xyzOffset>
           <rpyOffset>0 0 0</rpyOffset>
@@ -219,7 +219,7 @@
       </sensor>
       <sensor name='vodyne16' type='ray'>
         <visualize>0</visualize>
-        <update_rate>5.5</update_rate>
+        <update_rate>10</update_rate>
         <ray>
           <scan>
             <horizontal>
@@ -243,7 +243,7 @@
           <noise>
             <type>gaussian</type>
             <mean>0</mean>
-            <stddev>0.005</stddev>
+            <stddev>0</stddev>
           </noise>
         </ray>
         <plugin name='gazebo_rplidar' filename='libgazebo_ros_velodyne_laser.so'>

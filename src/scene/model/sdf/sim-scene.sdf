@@ -31,7 +31,7 @@
           <surface>
             <contact>
               <collide_bitmask>65535</collide_bitmask>
-              <ode/>
+              <ode />
             </contact>
             <friction>
               <ode>
@@ -39,10 +39,10 @@
                 <mu2>50</mu2>
               </ode>
               <torsional>
-                <ode/>
+                <ode />
               </torsional>
             </friction>
-            <bounce/>
+            <bounce />
           </surface>
           <max_contacts>10</max_contacts>
         </collision>
@@ -68,7 +68,7 @@
     </model>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
-    <atmosphere type='adiabatic'/>
+    <atmosphere type='adiabatic' />
     <physics type='ode'>
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
@@ -79,7 +79,7 @@
       <background>0.7 0.7 0.7 1</background>
       <shadows>1</shadows>
     </scene>
-    <wind/>
+    <wind />
     <spherical_coordinates>
       <surface_model>EARTH_WGS84</surface_model>
       <latitude_deg>0</latitude_deg>
@@ -416,13 +416,13 @@
         <gravity>1</gravity>
         <sensor name="imu_sensor" type="imu">
           <always_on>1</always_on>
-          <update_rate>100</update_rate>
+          <update_rate>400</update_rate>
           <visualize>1</visualize>
           <topic>__default_topic__</topic>
           <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
             <topicName>/sim_imu/gyro_acce</topicName>
             <bodyName>imu</bodyName>
-            <updateRateHZ>100.0</updateRateHZ>
+            <updateRateHZ>400.0</updateRateHZ>
             <gaussianNoise>0.0</gaussianNoise>
             <xyzOffset>0 0 0</xyzOffset>
             <rpyOffset>0 0 0</rpyOffset>
@@ -432,7 +432,7 @@
         </sensor>
         <sensor name="vodyne16" type="ray">
           <visualize>0</visualize>
-          <update_rate>5.5</update_rate>
+          <update_rate>10</update_rate>
           <ray>
             <scan>
               <horizontal>
@@ -456,7 +456,7 @@
             <noise>
               <type>gaussian</type>
               <mean>0</mean>
-              <stddev>0.005</stddev>
+              <stddev>0</stddev>
             </noise>
           </ray>
           <plugin name="gazebo_rplidar" filename="libgazebo_ros_velodyne_laser.so">
@@ -2073,6 +2073,7 @@
         </trajectory>
       </script>
     </actor>
+
 
   </world>
 </sdf>
