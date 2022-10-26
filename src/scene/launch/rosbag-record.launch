@@ -1,0 +1,15 @@
+<launch>
+
+  <arg name="imu_topic" value="/sim_imu/gyro_acce" />
+
+  <arg name="camera_topic" value="/sim_camera/image" />
+
+  <arg name="lidar_topic" value="/sim_lidar/scan" />
+
+  <arg name="bag_prefix" value="sim" />
+
+  <arg name="bag_dur" value="10.0" />
+
+  <node pkg="rosbag" type="record" name="record" args="$(arg imu_topic) $(arg camera_topic) $(arg lidar_topic) -o $(find scene)/bag/$(arg bag_prefix) --duration=$(arg bag_dur)" />
+
+</launch>
