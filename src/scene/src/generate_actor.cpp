@@ -124,6 +124,19 @@ tinyxml2::XMLNode *GetSimRobotLinkFromSDF(const std::string &filename, tinyxml2:
     return linkElem->DeepClone(&target);
 }
 
+std::vector<tinyxml2::XMLNode *> GetSimRobotPluginFromSDF(const std::string &filename, tinyxml2::XMLDocument &target) {
+    tinyxml2::XMLDocument robot;
+    robot.LoadFile(filename.c_str());
+    auto modelElem = robot.FirstChild()->FirstChild();
+    std::vector<tinyxml2::XMLNode *> odomElems;
+    for (auto elem = modelElem->FirstChildElement(); elem; elem = elem->NextSiblingElement()) {
+        if (std::string(elem->Name()) == "plugin") {
+            odomElems.push_back(elem->DeepClone(&target));
+        }
+    }
+    return odomElems;
+}
+
 int main(int argc, char *argv[]) {
     ros::init(argc, argv, "generate_actor");
     LOG_PROCESS("start reading trajectory dea file")
@@ -137,6 +150,13 @@ int main(int argc, char *argv[]) {
             "/home/csl/ros_ws/sim-scene/src/scene/model/sdf/sim-robot.sdf", doc
     );
     actorElem->InsertEndChild(linkElem);
+
+    auto plugins = GetSimRobotPluginFromSDF(
+            "/home/csl/ros_ws/sim-scene/src/scene/model/sdf/sim-robot.sdf", doc
+    );
+    for (const auto &plugin: plugins) {
+        actorElem->InsertEndChild(plugin);
+    }
 
     auto scriptElem = GetSimRobotScriptFromDEA(
             "/home/csl/ros_ws/sim-scene/src/scene/model/trajectory/trajectory.dae", doc);

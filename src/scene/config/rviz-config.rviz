@@ -5,8 +5,12 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /TF1
         - /TF1/Frames1
+        - /Odometry1
+        - /Odometry2
+        - /Odometry2/Shape1
+        - /Odometry3
+        - /Odometry3/Shape1
       Splitter Ratio: 0.5
     Tree Height: 532
   - Class: rviz/Selection
@@ -143,8 +147,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 0.9492382407188416
-        Min Value: -0.01217624545097351
+        Max Value: 3.0065646171569824
+        Min Value: -0.00847625732421875
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -168,21 +172,116 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-    - Alpha: 1
-      Class: rviz_plugin_tutorials/Imu
-      Color: 204; 51; 204
-      Enabled: false
-      History Length: 1
-      Name: Imu
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
+      Enabled: true
+      Keep: 150
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612
       Queue Size: 10
-      Topic: /sim_imu/gyro_acce
+      Shape:
+        Alpha: 1
+        Axes Length: 0.10000000149011612
+        Axes Radius: 0.019999999552965164
+        Color: 0; 255; 0
+        Head Length: 0.05000000074505806
+        Head Radius: 0.03999999910593033
+        Shaft Length: 0.10000000149011612
+        Shaft Radius: 0.019999999552965164
+        Value: Arrow
+      Topic: /camera_ground_truth
       Unreliable: false
-      Value: false
+      Value: true
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
+      Enabled: true
+      Keep: 150
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612
+      Queue Size: 10
+      Shape:
+        Alpha: 1
+        Axes Length: 0.10000000149011612
+        Axes Radius: 0.019999999552965164
+        Color: 0; 0; 255
+        Head Length: 0.05000000074505806
+        Head Radius: 0.03999999910593033
+        Shaft Length: 0.10000000149011612
+        Shaft Radius: 0.019999999552965164
+        Value: Arrow
+      Topic: /imu_ground_truth
+      Unreliable: false
+      Value: true
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
+      Enabled: true
+      Keep: 150
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612
+      Queue Size: 10
+      Shape:
+        Alpha: 1
+        Axes Length: 0.10000000149011612
+        Axes Radius: 0.019999999552965164
+        Color: 255; 25; 0
+        Head Length: 0.05000000074505806
+        Head Radius: 0.03999999910593033
+        Shaft Length: 0.10000000149011612
+        Shaft Radius: 0.019999999552965164
+        Value: Arrow
+      Topic: /lidar_ground_truth
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: base_footprint
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -206,7 +305,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 5.9648003578186035
+      Distance: 14.492077827453613
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -214,17 +313,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.8788473606109619
-        Y: -0.6603085994720459
-        Z: 0.8732984662055969
+        X: -0.9414353370666504
+        Y: 0.4277200996875763
+        Z: -1.611331820487976
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5547959208488464
+      Pitch: 1.1597965955734253
       Target Frame: <Fixed Frame>
-      Yaw: 4.911752700805664
+      Yaw: 6.2567667961120605
     Saved: ~
 Window Geometry:
   Displays:

@@ -14,7 +14,7 @@ find_package(
         sensor_msgs
         std_msgs
         tf
-        pcl_ros
+        nav_msgs
 )
 
 ## System dependencies are found with CMake's conventions

@@ -11,5 +11,5 @@
         <arg name="world_name" value="$(find scene)/model/sdf/sim-scene.sdf" />
     </include>
 
-    <!-- <node pkg="scene" name="sim_robot_state" type="sim_robot_state" output="screen" /> -->
+    <node pkg="scene" name="sim_robot_state" type="sim_robot_state" output="screen" />
 </launch>
