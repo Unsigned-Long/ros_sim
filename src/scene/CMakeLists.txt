@@ -12,6 +12,7 @@ find_package(
         roscpp
         rospy
         sensor_msgs
+        geometry_msgs
         std_msgs
         tf
         nav_msgs
