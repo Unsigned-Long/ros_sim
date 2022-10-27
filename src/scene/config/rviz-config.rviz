@@ -6,10 +6,9 @@ Panels:
       Expanded:
         - /Global Options1
         - /TF1/Frames1
-        - /Odometry1
-        - /Odometry2
+        - /PointCloud21
+        - /PointCloud21/Autocompute Value Bounds1
         - /Odometry2/Shape1
-        - /Odometry3
         - /Odometry3/Shape1
       Splitter Ratio: 0.5
     Tree Height: 532
@@ -144,11 +143,11 @@ Visualization Manager:
       Transport Hint: raw
       Unreliable: false
       Value: true
-    - Alpha: 1
+    - Alpha: 0.800000011920929
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 3.0065646171569824
-        Min Value: -0.00847625732421875
+        Max Value: 3.001519203186035
+        Min Value: 0.0006297826766967773
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -305,7 +304,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 14.492077827453613
+      Distance: 14.138639450073242
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -321,9 +320,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.1597965955734253
+      Pitch: 1.0997962951660156
       Target Frame: <Fixed Frame>
-      Yaw: 6.2567667961120605
+      Yaw: 0.10358121246099472
     Saved: ~
 Window Geometry:
   Displays:

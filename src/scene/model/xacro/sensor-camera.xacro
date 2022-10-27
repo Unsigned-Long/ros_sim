@@ -16,7 +16,7 @@
         <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
-          <stddev>0.007</stddev>
+          <stddev>0.0</stddev>
         </noise>
       </camera>
       <plugin name="gazebo_camera" filename="libgazebo_ros_camera.so">
@@ -38,7 +38,7 @@
   <gazebo>
     <plugin name="camera_pose" filename="libgazebo_ros_p3d.so">
       <alwaysOn>true</alwaysOn>
-      <updateRate>50.0</updateRate>
+      <updateRate>30.0</updateRate>
       <bodyName>camera</bodyName>
       <topicName>camera_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>

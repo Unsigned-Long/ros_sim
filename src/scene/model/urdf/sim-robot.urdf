@@ -167,7 +167,7 @@
     <sensor name="vodyne16" type="ray">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
-      <update_rate>10.0</update_rate>
+      <update_rate>20.0</update_rate>
       <ray>
         <scan>
           <horizontal>
@@ -203,7 +203,7 @@
   <gazebo>
     <plugin filename="libgazebo_ros_p3d.so" name="lidar_pose">
       <alwaysOn>true</alwaysOn>
-      <updateRate>50.0</updateRate>
+      <updateRate>20.0</updateRate>
       <bodyName>lidar</bodyName>
       <topicName>lidar_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>
@@ -220,9 +220,9 @@
       <visualize>true</visualize>
       <topic>__default_topic__</topic>
       <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-        <topicName>/sim_imu/gyro_acce</topicName>
+        <topicName>/sim_imu/frame</topicName>
         <bodyName>imu</bodyName>
-        <updateRateHZ>400.0</updateRateHZ>
+        <updateRateHZ>400</updateRateHZ>
         <gaussianNoise>0.0</gaussianNoise>
         <xyzOffset>0 0 0</xyzOffset>
         <rpyOffset>0 0 0</rpyOffset>
@@ -235,7 +235,7 @@
   <gazebo>
     <plugin filename="libgazebo_ros_p3d.so" name="imu_pose">
       <alwaysOn>true</alwaysOn>
-      <updateRate>50.0</updateRate>
+      <updateRate>400</updateRate>
       <bodyName>imu</bodyName>
       <topicName>imu_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>
@@ -261,7 +261,7 @@
         <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
-          <stddev>0.007</stddev>
+          <stddev>0.0</stddev>
         </noise>
       </camera>
       <plugin filename="libgazebo_ros_camera.so" name="gazebo_camera">
@@ -283,7 +283,7 @@
   <gazebo>
     <plugin filename="libgazebo_ros_p3d.so" name="camera_pose">
       <alwaysOn>true</alwaysOn>
-      <updateRate>50.0</updateRate>
+      <updateRate>30.0</updateRate>
       <bodyName>camera</bodyName>
       <topicName>camera_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>

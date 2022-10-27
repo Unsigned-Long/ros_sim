@@ -4,7 +4,7 @@
     <sensor type="ray" name="vodyne16">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
-      <update_rate>10.0</update_rate>
+      <update_rate>20.0</update_rate>
       <ray>
         <scan>
           <horizontal>
@@ -40,7 +40,7 @@
   <gazebo>
     <plugin name="lidar_pose" filename="libgazebo_ros_p3d.so">
       <alwaysOn>true</alwaysOn>
-      <updateRate>50.0</updateRate>
+      <updateRate>20.0</updateRate>
       <bodyName>lidar</bodyName>
       <topicName>lidar_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>
