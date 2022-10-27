@@ -30,7 +30,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: Image
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -138,6 +138,8 @@ Visualization Manager:
           Value: true
         lidar:
           Value: true
+        map:
+          Value: true
         right_wheel:
           Value: true
       Marker Alpha: 0.5
@@ -147,19 +149,20 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        base_footprint:
-          base_link:
-            back_support_wheel:
-              {}
-            camera:
-              {}
-            front_support_wheel:
-              {}
-            imu:
-              {}
+        map:
+          base_footprint:
+            base_link:
+              back_support_wheel:
+                {}
+              camera:
+                {}
+              front_support_wheel:
+                {}
+              imu:
+                {}
+              lidar:
+                {}
             left_wheel:
-              {}
-            lidar:
               {}
             right_wheel:
               {}
@@ -180,8 +183,8 @@ Visualization Manager:
     - Alpha: 0.800000011920929
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 3.001519203186035
-        Min Value: 0.0006297826766967773
+        Max Value: 2.1701269149780273
+        Min Value: 0.0010479092597961426
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -314,7 +317,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: base_footprint
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -338,7 +341,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.7934939861297607
+      Distance: 10.519659042358398
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -346,17 +349,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -1.7077322006225586
-        Y: 0.4481731951236725
-        Z: -0.39996689558029175
+        X: -1.5085642337799072
+        Y: 0.2621251940727234
+        Z: -0.9549659490585327
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.29979661107063293
+      Pitch: 1.0797959566116333
       Target Frame: <Fixed Frame>
-      Yaw: 0.13858509063720703
+      Yaw: 0.6085848808288574
     Saved: ~
 Window Geometry:
   Displays:
