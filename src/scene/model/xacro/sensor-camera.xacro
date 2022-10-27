@@ -38,7 +38,7 @@
   <gazebo>
     <plugin name="camera_pose" filename="libgazebo_ros_p3d.so">
       <alwaysOn>true</alwaysOn>
-      <updateRate>30.0</updateRate>
+      <updateRate>50.0</updateRate>
       <bodyName>camera</bodyName>
       <topicName>camera_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>

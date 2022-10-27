@@ -40,7 +40,7 @@
   <gazebo>
     <plugin name="lidar_pose" filename="libgazebo_ros_p3d.so">
       <alwaysOn>true</alwaysOn>
-      <updateRate>20.0</updateRate>
+      <updateRate>50.0</updateRate>
       <bodyName>lidar</bodyName>
       <topicName>lidar_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>

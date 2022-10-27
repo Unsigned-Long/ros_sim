@@ -5,10 +5,9 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /TF1
         - /TF1/Frames1
-        - /PointCloud21
         - /PointCloud21/Autocompute Value Bounds1
+        - /Odometry1/Shape1
         - /Odometry2/Shape1
         - /Odometry3/Shape1
       Splitter Ratio: 0.5
@@ -66,6 +65,11 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        arm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         back_support_wheel:
           Alpha: 1
           Show Axes: false
@@ -122,6 +126,8 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        arm:
+          Value: true
         back_support_wheel:
           Value: true
         base_footprint:
@@ -152,6 +158,9 @@ Visualization Manager:
         map:
           base_footprint:
             base_link:
+              arm:
+                lidar:
+                  {}
               back_support_wheel:
                 {}
               camera:
@@ -159,8 +168,6 @@ Visualization Manager:
               front_support_wheel:
                 {}
               imu:
-                {}
-              lidar:
                 {}
             left_wheel:
               {}
@@ -183,8 +190,8 @@ Visualization Manager:
     - Alpha: 0.800000011920929
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 2.1701269149780273
-        Min Value: 0.0010479092597961426
+        Max Value: 2.214703321456909
+        Min Value: 0.004074424505233765
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -234,7 +241,7 @@ Visualization Manager:
         Alpha: 1
         Axes Length: 0.10000000149011612
         Axes Radius: 0.019999999552965164
-        Color: 0; 255; 0
+        Color: 0; 0; 255
         Head Length: 0.05000000074505806
         Head Radius: 0.03999999910593033
         Shaft Length: 0.10000000149011612
@@ -269,7 +276,7 @@ Visualization Manager:
         Alpha: 1
         Axes Length: 0.10000000149011612
         Axes Radius: 0.019999999552965164
-        Color: 0; 0; 255
+        Color: 0; 255; 0
         Head Length: 0.05000000074505806
         Head Radius: 0.03999999910593033
         Shaft Length: 0.10000000149011612
@@ -341,7 +348,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10.519659042358398
+      Distance: 14.179977416992188
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -349,17 +356,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -1.5085642337799072
-        Y: 0.2621251940727234
-        Z: -0.9549659490585327
+        X: -1.098151683807373
+        Y: -0.8320313096046448
+        Z: -0.8155129551887512
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.0797959566116333
+      Pitch: 1.0497967004776
       Target Frame: <Fixed Frame>
-      Yaw: 0.6085848808288574
+      Yaw: 1.491742730140686
     Saved: ~
 Window Geometry:
   Displays:
