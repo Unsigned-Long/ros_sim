@@ -5,6 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
+        - /TF1
         - /TF1/Frames1
         - /PointCloud21
         - /PointCloud21/Autocompute Value Bounds1
@@ -29,7 +30,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: Image
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -65,6 +66,11 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        back_support_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_footprint:
           Alpha: 1
           Show Axes: false
@@ -80,12 +86,27 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        front_support_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         imu:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
+        left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         lidar:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -101,34 +122,47 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        back_support_wheel:
+          Value: true
         base_footprint:
           Value: true
         base_link:
           Value: true
         camera:
           Value: true
+        front_support_wheel:
+          Value: true
         imu:
+          Value: true
+        left_wheel:
           Value: true
         lidar:
           Value: true
-        map:
+        right_wheel:
           Value: true
       Marker Alpha: 0.5
       Marker Scale: 0.30000001192092896
       Name: TF
-      Show Arrows: false
+      Show Arrows: true
       Show Axes: true
       Show Names: false
       Tree:
-        map:
-          base_footprint:
-            base_link:
-              camera:
-                {}
-              imu:
-                {}
-              lidar:
-                {}
+        base_footprint:
+          base_link:
+            back_support_wheel:
+              {}
+            camera:
+              {}
+            front_support_wheel:
+              {}
+            imu:
+              {}
+            left_wheel:
+              {}
+            lidar:
+              {}
+            right_wheel:
+              {}
       Update Interval: 0
       Value: true
     - Class: rviz/Image
@@ -280,7 +314,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: map
+    Fixed Frame: base_footprint
     Frame Rate: 30
   Name: root
   Tools:
@@ -304,7 +338,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 14.138639450073242
+      Distance: 3.7934939861297607
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -312,17 +346,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.9414353370666504
-        Y: 0.4277200996875763
-        Z: -1.611331820487976
+        X: -1.7077322006225586
+        Y: 0.4481731951236725
+        Z: -0.39996689558029175
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.0997962951660156
+      Pitch: 0.29979661107063293
       Target Frame: <Fixed Frame>
-      Yaw: 0.10358121246099472
+      Yaw: 0.13858509063720703
     Saved: ~
 Window Geometry:
   Displays:
