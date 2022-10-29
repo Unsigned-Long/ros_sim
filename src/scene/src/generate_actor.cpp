@@ -117,20 +117,14 @@ tinyxml2::XMLNode *GetSimRobotScriptFromDEA(const std::string &filename, tinyxml
     return scriptElem->DeepClone(&target);
 }
 
-tinyxml2::XMLNode *GetSimRobotLinkFromSDF(const std::string &filename, tinyxml2::XMLDocument &target) {
-    tinyxml2::XMLDocument robot;
-    robot.LoadFile(filename.c_str());
-    auto linkElem = robot.FirstChild()->FirstChild()->FirstChild();
-    return linkElem->DeepClone(&target);
-}
-
-std::vector<tinyxml2::XMLNode *> GetSimRobotPluginFromSDF(const std::string &filename, tinyxml2::XMLDocument &target) {
+std::vector<tinyxml2::XMLNode *>
+GetSimRobotLinksAndPluginsFromSDF(const std::string &filename, tinyxml2::XMLDocument &target) {
     tinyxml2::XMLDocument robot;
     robot.LoadFile(filename.c_str());
     auto modelElem = robot.FirstChild()->FirstChild();
     std::vector<tinyxml2::XMLNode *> odomElems;
     for (auto elem = modelElem->FirstChildElement(); elem; elem = elem->NextSiblingElement()) {
-        if (std::string(elem->Name()) == "plugin") {
+        if (std::string(elem->Name()) == "plugin" || std::string(elem->Name()) == "link") {
             odomElems.push_back(elem->DeepClone(&target));
         }
     }
@@ -146,16 +140,11 @@ int main(int argc, char *argv[]) {
     auto actorElem = doc.NewElement("actor");
     actorElem->SetAttribute("name", "sim_robot");
 
-    auto linkElem = GetSimRobotLinkFromSDF(
+    auto linksAndPlugins = GetSimRobotLinksAndPluginsFromSDF(
             "/home/csl/ros_ws/sim-scene/src/scene/model/sdf/sim-robot.sdf", doc
     );
-    actorElem->InsertEndChild(linkElem);
-
-    auto plugins = GetSimRobotPluginFromSDF(
-            "/home/csl/ros_ws/sim-scene/src/scene/model/sdf/sim-robot.sdf", doc
-    );
-    for (const auto &plugin: plugins) {
-        actorElem->InsertEndChild(plugin);
+    for (const auto &item: linksAndPlugins) {
+        actorElem->InsertEndChild(item);
     }
 
     auto scriptElem = GetSimRobotScriptFromDEA(

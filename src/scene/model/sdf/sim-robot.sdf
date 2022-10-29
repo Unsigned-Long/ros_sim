@@ -294,14 +294,14 @@
       <pose relative_to='back_support_wheel_to_base_link'>0 0 0 0 -0 0</pose>
       <inertial>
         <pose>0 0 0 0 -0 0</pose>
-        <mass>2</mass>
+        <mass>0.3</mass>
         <inertia>
-          <ixx>0.00018</ixx>
+          <ixx>2.7e-05</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.00018</iyy>
+          <iyy>2.7e-05</iyy>
           <iyz>0</iyz>
-          <izz>0.00018</izz>
+          <izz>2.7e-05</izz>
         </inertia>
       </inertial>
       <collision name='back_support_wheel_collision'>
@@ -355,14 +355,14 @@
       <pose relative_to='front_support_wheel_to_base_link'>0 0 0 0 -0 0</pose>
       <inertial>
         <pose>0 0 0 0 -0 0</pose>
-        <mass>2</mass>
+        <mass>0.3</mass>
         <inertia>
-          <ixx>0.00018</ixx>
+          <ixx>2.7e-05</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.00018</iyy>
+          <iyy>2.7e-05</iyy>
           <iyz>0</iyz>
-          <izz>0.00018</izz>
+          <izz>2.7e-05</izz>
         </inertia>
       </inertial>
       <collision name='front_support_wheel_collision'>
@@ -416,14 +416,14 @@
       <pose relative_to='left_wheel_to_base_link'>0 0 0 0 -0 0</pose>
       <inertial>
         <pose>0 0 0 0 -0 0</pose>
-        <mass>2</mass>
+        <mass>0.3</mass>
         <inertia>
-          <ixx>0.00346667</ixx>
+          <ixx>0.00052</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.00346667</iyy>
+          <iyy>0.00052</iyy>
           <iyz>0</iyz>
-          <izz>0.0064</izz>
+          <izz>0.00096</izz>
         </inertia>
       </inertial>
       <collision name='left_wheel_collision'>
@@ -479,14 +479,14 @@
       <pose relative_to='right_wheel_to_base_link'>0 0 0 0 -0 0</pose>
       <inertial>
         <pose>0 0 0 0 -0 0</pose>
-        <mass>2</mass>
+        <mass>0.3</mass>
         <inertia>
-          <ixx>0.00346667</ixx>
+          <ixx>0.00052</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.00346667</iyy>
+          <iyy>0.00052</iyy>
           <iyz>0</iyz>
-          <izz>0.0064</izz>
+          <izz>0.00096</izz>
         </inertia>
       </inertial>
       <collision name='right_wheel_collision'>
