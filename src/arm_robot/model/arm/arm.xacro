@@ -8,7 +8,7 @@
         <box size="${platform_width} ${platform_width} ${platform_length}" />
       </geometry>
       <material name="blue">
-        <color rgba="0 0 1.0 0.5" />
+        <color rgba="0 0 1.0 ${transparency}" />
       </material>
       <origin xyz="0.0 0.0 ${platform_length * 0.5}" rpy="0 0 0" />
     </visual>
@@ -38,7 +38,7 @@
         <box size="${link0_length} ${link0_width} ${link0_width}" />
       </geometry>
       <material name="red">
-        <color rgba="1.0 0 0 0.5" />
+        <color rgba="1.0 0 0 ${transparency}" />
       </material>
       <origin xyz="0.0 0.0 ${link0_width * 0.5}" rpy="0 0 0" />
     </visual>
@@ -69,7 +69,7 @@
         <box size="${link1_width} ${link1_width} ${link1_length}" />
       </geometry>
       <material name="green">
-        <color rgba="0 1.0 0 0.5" />
+        <color rgba="0 1.0 0 ${transparency}" />
       </material>
       <origin xyz="0.0 0.0 ${link1_length * 0.5}" rpy="0 0 0" />
     </visual>
@@ -100,7 +100,7 @@
         <box size="${link2_width} ${link2_width} ${link2_length}" />
       </geometry>
       <material name="blue">
-        <color rgba="0 0 1.0 0.5" />
+        <color rgba="0 0 1.0 ${transparency}" />
       </material>
       <origin xyz="0.0 0.0 ${link2_length * 0.5}" rpy="0 0 0" />
     </visual>
