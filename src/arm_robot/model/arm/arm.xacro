@@ -57,6 +57,7 @@
     <origin xyz="0.0 0.0 ${platform_length}" rpy="0 0 0" />
     <axis xyz="0 1 0" />
     <limit lower="-${platform_width * 0.5 - link0_width * 0.5}" upper="${platform_width * 0.5 - link0_width * 0.5}" effort="10.0" velocity="1.0" />
+    <dynamics damping="0.7" friction="0.0" />
   </joint>
 
   <gazebo reference="link0">
@@ -88,6 +89,8 @@
     <origin xyz="0.0 0.0 ${link0_width}" rpy="0 0 0" />
     <axis xyz="1 0 0" />
     <limit lower="-${link0_length * 0.5 - link1_width * 0.5}" upper="${link0_length * 0.5 - link1_width * 0.5}" effort="10.0" velocity="1.0" />
+    <dynamics damping="0.7" friction="0.0" />
+
   </joint>
 
   <gazebo reference="link1">
@@ -118,6 +121,8 @@
     <child link="link2" />
     <origin xyz="0.0 0.0 ${link1_length}" rpy="0 0 0" />
     <axis xyz="0 0 1" />
+    <dynamics damping="0.7" friction="0.0" />
+
   </joint>
 
   <gazebo reference="link2">
@@ -147,6 +152,8 @@
     <origin xyz="${link3_width * 0.5} 0.0 ${link2_length * 0.5}" rpy="0 0 0" />
     <axis xyz="0 0 1" />
     <limit lower="-${link2_length * 0.5 - link3_width * 0.5}" upper="${link2_length * 0.5 - link3_width * 0.5}" effort="10.0" velocity="1.0" />
+    <dynamics damping="0.7" friction="0.0" />
+
   </joint>
 
   <gazebo reference="link3">
@@ -175,6 +182,8 @@
     <child link="link4" />
     <origin xyz="${link3_length} 0.0 0.0" rpy="0 0 0" />
     <axis xyz="1 0 0" />
+    <dynamics damping="0.7" friction="0.0" />
+
   </joint>
 
   <gazebo reference="link4">
