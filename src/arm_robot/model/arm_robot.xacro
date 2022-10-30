@@ -52,12 +52,11 @@
 
   <xacro:property name="PI" value="3.1415926535" />
 
-  <xacro:property name="foot_mass" value="0.001" />
-  <xacro:property name="base_mass" value="0.5" />
-  <xacro:property name="lidar_mass" value="0.02" />
-  <xacro:property name="arm_mass" value="0.01" />
-  <xacro:property name="imu_mass" value="0.01" />
-  <xacro:property name="camera_mass" value="0.01" />
+  <xacro:property name="base_mass" value="0.001" />
+  <xacro:property name="lidar_mass" value="0.001" />
+  <xacro:property name="arm_mass" value="0.001" />
+  <xacro:property name="imu_mass" value="0.001" />
+  <xacro:property name="camera_mass" value="0.001" />
 
   <!-- ========================= -->
   <!-- | for link robot and arm| -->

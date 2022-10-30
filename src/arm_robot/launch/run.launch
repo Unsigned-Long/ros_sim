@@ -1,15 +1,15 @@
 <launch>
   <param name="robot_description" command="$(find xacro)/xacro $(find arm_robot)/model/arm_robot.xacro" />
 
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find learn_urdf)/config/config.rviz" />
+  <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find learn_urdf)/config/config.rviz" /> -->
 
   <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" />
 
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
 
-  <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" />
+  <!-- <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" /> -->
 
-  <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch" /> -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
 
-  <!-- <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model arm -param robot_description" /> -->
+  <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model arm -param robot_description" />
 </launch>
