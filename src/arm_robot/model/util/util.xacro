@@ -62,5 +62,10 @@
       </collision>
     </gazebo>
   </xacro:macro>
-  
+
+  <xacro:macro name="joint-dynamic">
+    <dynamics damping="0.5" friction="10.0" />
+    <dynamics D="1" K="7000" damping="0.003" friction="0.0" mu_coulomb="0" mu_viscous="16" />
+  </xacro:macro>
+
 </robot>

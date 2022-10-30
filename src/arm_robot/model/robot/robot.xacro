@@ -30,6 +30,7 @@
     <child link="base_link" />
     <origin xyz="${link4_length * 0.5 - base_box_size * 0.5} ${base_box_size * 0.5 + link4_width * 0.5} 0.0" rpy="0 0 0" />
     <axis xyz="0 1 0" />
+    <xacro:joint-dynamic />
   </joint>
 
   <xacro:include filename="lidar.xacro" />
