@@ -30,37 +30,6 @@
   <xacro:property name="wheel_mass" value="0.3" />
   <xacro:property name="support_wheel_mass" value="0.3" />
 
-  <xacro:include filename="util.xacro" />
-
-  <!-- foot base link -->
-  <link name="base_footprint">
-    <visual>
-      <geometry>
-        <box size="${foot_box_size} ${foot_box_size} ${foot_box_size}" />
-      </geometry>
-      <material name="black">
-        <color rgba="0.0 0.0 0.0 ${transparency}" />
-      </material>
-    </visual>
-  </link>
-
-  <gazebo reference="base_footprint">
-    <material>Gazebo/Black</material>
-  </gazebo>
-
-  <gazebo>
-    <plugin name="base_footprint_pose" filename="libgazebo_ros_p3d.so">
-      <alwaysOn>true</alwaysOn>
-      <updateRate>50.0</updateRate>
-      <bodyName>base_footprint</bodyName>
-      <topicName>base_footprint_ground_truth</topicName>
-      <gaussianNoise>0.0</gaussianNoise>
-      <frameName>map</frameName>
-      <xyzOffsets>0 0 0</xyzOffsets>
-      <rpyOffsets>0 0 0</rpyOffsets>
-    </plugin>
-  </gazebo>
-
   <!-- base link -->
   <link name="base_link">
     <visual>
@@ -85,11 +54,12 @@
   </gazebo>
 
   <!-- joint -->
-  <joint name="base_to_foot" type="fixed">
-    <parent link="base_footprint" />
+
+  <joint name="base_to_link4" type="continuous">
+    <parent link="link4" />
     <child link="base_link" />
-    <origin xyz="0.0 0.0 ${base_box_size * 0.5 + ground_clearance}" rpy="0.0 0.0 0.0" />
-    <axis xyz="0.0 0.0 1.0" />
+    <origin xyz="${link4_length - base_box_size * 0.5} ${base_box_size} 0.0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
   </joint>
 
   <xacro:include filename="lidar.xacro" />
