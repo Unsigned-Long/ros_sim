@@ -36,18 +36,18 @@
   <xacro:property name="base_box_size" value="0.06" />
 
   <xacro:property name="imu_box_size" value="0.04" />
-
+  
   <xacro:property name="lidar_cylinder_radius" value="0.03" />
   <xacro:property name="lidar_cylinder_length" value="0.03" />
-
+  
   <xacro:property name="arm_cylinder_radius" value="0.005" />
   <xacro:property name="arm_cylinder_length" value="0.06" />
-
+  
   <xacro:property name="wheel_cylinder_radius" value="0.08" />
   <xacro:property name="wheel_cylinder_length" value="0.04" />
   <xacro:property name="ground_clearance" value="0.03" />
-
-  <xacro:property name="camera_box_radius" value="0.04" />
+  
+  <xacro:property name="camera_box_size" value="0.04" />
 
   <xacro:property name="transparency" value="0.8" />
 
