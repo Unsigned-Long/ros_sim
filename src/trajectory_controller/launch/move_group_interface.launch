@@ -1,5 +1,5 @@
 <launch>
 
-  <node name="move_group_interface_tutorial" pkg="arm_controller" type="move_group_interface_tutorial" respawn="false" output="screen"></node>
+  <node name="move_group_interface_tutorial" pkg="trajectory_controller" type="move_group_interface" respawn="false" output="screen"></node>
 
 </launch>
