@@ -44,13 +44,38 @@
 #include <moveit_msgs/CollisionObject.h>
 
 #include <moveit_visual_tools/moveit_visual_tools.h>
+#include <ostream>
 
-// The circle constant tau = 2*pi. One tau is one rotation in radians.
-const double tau = 2 * M_PI;
+#include "artwork/logger/logger.h"
+#include "artwork/csv/csv.h"
+
+struct Pose {
+    double x, y, z;
+    double qx, qy, qz, qw;
+
+    friend std::ostream &operator<<(std::ostream &os, const Pose &pose) {
+        os << "x: " << pose.x << " y: " << pose.y << " z: " << pose.z << " qx: " << pose.qx << " qy: " << pose.qy
+           << " qz: " << pose.qz << " qw: " << pose.qw;
+        return os;
+    }
+};
+
+std::vector<Pose> ReadPoseVecFromFile(const std::string &str) {
+    LOG_PROCESS("read pose sequence from file: ", str);
+    auto poseSeq = ns_csv::CSVReader::read<CSV_STRUCT(Pose, x, y, z, qx, qy, qz, qw) >(str, ',');
+    LOG_INFO("pose sequence size: ", poseSeq.size());
+    return poseSeq;
+}
 
 int main(int argc, char **argv) {
     ros::init(argc, argv, "move_group_interface_tutorial");
     ros::NodeHandle node_handle;
+
+    auto poseSeq = ReadPoseVecFromFile(
+            "/home/csl/ros_ws/sim-scene/src/trajectory_controller/trajectory/trajectory.csv"
+    );
+    LOG_VAR(poseSeq.front())
+    std::cin.get();
 
     // ROS spinning must be running for the MoveGroupInterface to get information
     // about the robot's state. One way to do this is to start an AsyncSpinner

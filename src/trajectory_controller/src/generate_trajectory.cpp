@@ -5,6 +5,17 @@
 #include "tinyxml2.h"
 #include "artwork/csv/csv.h"
 
+struct Pose {
+    double x, y, z;
+    double qx, qy, qz, qw;
+
+    friend std::ostream &operator<<(std::ostream &os, const Pose &pose) {
+        os << "x: " << pose.x << " y: " << pose.y << " z: " << pose.z << " qx: " << pose.qx << " qy: " << pose.qy
+           << " qz: " << pose.qz << " qw: " << pose.qw;
+        return os;
+    }
+};
+
 std::vector<std::string> splitString(const std::string &str, char splitor, bool ignoreEmpty = true) {
     std::vector<std::string> vec;
     auto iter = str.cbegin();
@@ -22,7 +33,7 @@ std::vector<std::string> splitString(const std::string &str, char splitor, bool 
     return vec;
 }
 
-std::vector<std::array<double, 7>> ReadPoseVecFromDEA(const std::string &str) {
+std::vector<Pose> ReadPoseVecFromDEA(const std::string &str) {
     LOG_PROCESS("start reading trajectory dea file: ", str)
 
     tinyxml2::XMLDocument doc;
@@ -36,7 +47,7 @@ std::vector<std::array<double, 7>> ReadPoseVecFromDEA(const std::string &str) {
 
     LOG_INFO("the elem count is: ", elems.size(), ", pose count is: ", elems.size() / 16);
 
-    std::vector<std::array<double, 7>> poseAry(elems.size() / 16);
+    std::vector<Pose> poseAry(elems.size() / 16);
 
     const double scale = 1.0 / 0.15;
     for (int i = 0; i < poseAry.size(); ++i) {
@@ -49,25 +60,22 @@ std::vector<std::array<double, 7>> ReadPoseVecFromDEA(const std::string &str) {
         Eigen::Quaterniond q(pose.topLeftCorner<3, 3>() * scale);
         auto &elem = poseAry.at(i);
         // x y z qx qy qz qw
-        elem.at(0) = t(0);
-        elem.at(1) = t(1);
-        elem.at(2) = t(2);
-        elem.at(3) = q.x();
-        elem.at(4) = q.y();
-        elem.at(5) = q.z();
-        elem.at(6) = q.w();
+        elem.x = t(0);
+        elem.y = t(1);
+        elem.z = t(2);
+        elem.qx = q.x();
+        elem.qy = q.y();
+        elem.qz = q.z();
+        elem.qw = q.w();
     }
     LOG_INFO("organize pose sequence finished...");
 
     return poseAry;
 }
 
-void SavePoseSequence(const std::string &str, const std::vector<std::array<double, 7>> &poseSeq) {
-    auto writer = ns_csv::CSVWriter::create(str);
+void SavePoseSequence(const std::string &str, const std::vector<Pose> &poseSeq) {
 
-    for (const auto &item: poseSeq) {
-        writer->writeLine(',', item[0], item[1], item[2], item[3], item[4], item[5], item[6]);
-    }
+    ns_csv::CSVWriter::write<CSV_STRUCT(Pose, x, y, z, qx, qy, qz, qw) >(str, ',', poseSeq);
 
     LOG_PROCESS("save trajectory dea to file: ", str)
 }
