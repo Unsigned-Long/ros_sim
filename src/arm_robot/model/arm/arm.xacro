@@ -99,8 +99,8 @@
       <geometry>
         <box size="${link2_width} ${link2_width} ${link2_length}" />
       </geometry>
-      <material name="blue">
-        <color rgba="0 0 1.0 ${transparency}" />
+      <material name="red">
+        <color rgba="1.0 0 0 ${transparency}" />
       </material>
       <origin xyz="0.0 0.0 ${link2_length * 0.5}" rpy="0 0 0" />
     </visual>
@@ -112,7 +112,7 @@
     </collision>
     <xacro:box_inertial_matrix m="${link_mass}" l="${link2_width}" w="${link2_width}" h="${link2_length}" />
   </link>
-  /moveit_tutorials/doc/pilz_industrial_motion_planner/pilz_industrial_motion_planner.html
+
   <joint name="link2_to_link1" type="continuous">
     <parent link="link1" />
     <child link="link2" />
@@ -121,7 +121,7 @@
   </joint>
 
   <gazebo reference="link2">
-    <material>Gazebo/Blue</material>
+    <material>Gazebo/Red</material>
   </gazebo>
 
   <link name="link3">
