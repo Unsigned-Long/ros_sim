@@ -21,43 +21,43 @@
   <xacro:property name="head_size" value="0.1" />
   <xacro:property name="head_mass" value="0.001" />
 
-  <xacro:property name="base_width" value="10.0" />
-  <xacro:property name="base_length" value="0.1" />
-  <xacro:property name="base_mass" value="100.0" />
+  <xacro:property name="platform_width" value="10.0" />
+  <xacro:property name="platform_length" value="0.1" />
+  <xacro:property name="platform_mass" value="100.0" />
 
   <xacro:property name="link_mass" value="0.001" />
 
   <xacro:include filename="$(find arm_robot)/model/util/util.xacro" />
 
-  <link name="base_footprint"></link>
+  <link name="platform_footprint"></link>
 
-  <link name="base">
+  <link name="platform">
     <visual>
       <geometry>
-        <box size="${base_width} ${base_width} ${base_length}" />
+        <box size="${platform_width} ${platform_width} ${platform_length}" />
       </geometry>
       <material name="blue">
         <color rgba="0 0 1.0 0.5" />
       </material>
-      <origin xyz="0.0 0.0 ${base_length * 0.5}" rpy="0 0 0" />
+      <origin xyz="0.0 0.0 ${platform_length * 0.5}" rpy="0 0 0" />
     </visual>
     <collision>
       <geometry>
-        <box size="${base_width} ${base_width} ${base_length}" />
+        <box size="${platform_width} ${platform_width} ${platform_length}" />
       </geometry>
-      <origin xyz="0.0 0.0 ${base_length * 0.5}" rpy="0 0 0" />
+      <origin xyz="0.0 0.0 ${platform_length * 0.5}" rpy="0 0 0" />
     </collision>
-    <xacro:box_inertial_matrix m="${base_mass}" l="${link0_length}" w="${base_width}" h="${base_length}" />
+    <xacro:box_inertial_matrix m="${platform_mass}" l="${link0_length}" w="${platform_width}" h="${platform_length}" />
   </link>
 
-  <joint name="base_to_footprint" type="fixed">
-    <parent link="base_footprint" />
-    <child link="base" />
+  <joint name="platform_to_footprint" type="fixed">
+    <parent link="platform_footprint" />
+    <child link="platform" />
     <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
     <axis xyz="0 1 0" />
   </joint>
 
-  <gazebo reference="base">
+  <gazebo reference="platform">
     <material>Gazebo/Blue</material>
   </gazebo>
 
@@ -80,12 +80,12 @@
     <xacro:box_inertial_matrix m="${link_mass}" l="${link0_length}" w="${link0_width}" h="${link0_width}" />
   </link>
 
-  <joint name="link0_to_base" type="prismatic">
-    <parent link="base" />
+  <joint name="link0_to_platform" type="prismatic">
+    <parent link="platform" />
     <child link="link0" />
-    <origin xyz="0.0 0.0 ${base_length}" rpy="0 0 0" />
+    <origin xyz="0.0 0.0 ${platform_length}" rpy="0 0 0" />
     <axis xyz="0 1 0" />
-    <limit lower="-${base_width * 0.5 - link0_width * 0.5}" upper="${base_width * 0.5 - link0_width * 0.5}" effort="10.0" velocity="1.0" />
+    <limit lower="-${platform_width * 0.5 - link0_width * 0.5}" upper="${platform_width * 0.5 - link0_width * 0.5}" effort="10.0" velocity="1.0" />
   </joint>
 
   <gazebo reference="link0">
@@ -240,9 +240,9 @@
     <material>Gazebo/Yellow</material>
   </gazebo>
 
-  <xacro:gazebo-joint joint="link0_to_base" transmission="hardware_interface/PositionJointInterface" />
-  <xacro:gazebo-joint joint="link0_to_base" transmission="hardware_interface/VelocityJointInterface" />
-  <xacro:gazebo-joint joint="link0_to_base" transmission="hardware_interface/EffortJointInterface" />
+  <xacro:gazebo-joint joint="link0_to_platform" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="link0_to_platform" transmission="hardware_interface/VelocityJointInterface" />
+  <xacro:gazebo-joint joint="link0_to_platform" transmission="hardware_interface/EffortJointInterface" />
 
   <xacro:gazebo-joint joint="link1_to_link0" transmission="hardware_interface/PositionJointInterface" />
   <xacro:gazebo-joint joint="link1_to_link0" transmission="hardware_interface/VelocityJointInterface" />
