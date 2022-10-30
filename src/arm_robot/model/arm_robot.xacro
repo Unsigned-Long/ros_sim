@@ -42,7 +42,7 @@
   <xacro:property name="lidar_cylinder_length" value="0.03" />
   
   <xacro:property name="arm_cylinder_radius" value="0.005" />
-  <xacro:property name="arm_cylinder_length" value="0.06" />
+  <xacro:property name="arm_cylinder_length" value="0.04" />
   
   <xacro:property name="wheel_cylinder_radius" value="0.08" />
   <xacro:property name="wheel_cylinder_length" value="0.04" />
