@@ -10,28 +10,25 @@
       <material name="blue">
         <color rgba="0 0 1.0 ${transparency}" />
       </material>
-      <origin xyz="0.0 0.0 ${platform_length * 0.5}" rpy="0 0 0" />
     </visual>
     <collision>
       <geometry>
         <box size="${platform_width} ${platform_width} ${platform_length}" />
       </geometry>
-      <origin xyz="0.0 0.0 ${platform_length * 0.5}" rpy="0 0 0" />
     </collision>
-    <xacro:box_inertial_matrix m="${platform_mass}" l="${link0_length}" w="${platform_width}" h="${platform_length}" />
+    <xacro:box_inertial_matrix m="${platform_mass}" l="${platform_width}" w="${platform_width}" h="${platform_length}" />
   </link>
 
   <joint name="platform_to_footprint" type="fixed">
     <parent link="platform_footprint" />
     <child link="platform" />
-    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+    <origin xyz="0.0 0.0 ${0.5 * platform_length}" rpy="0 0 0" />
     <axis xyz="0 1 0" />
   </joint>
 
   <gazebo reference="platform">
     <material>Gazebo/Blue</material>
   </gazebo>
-
   <link name="link0">
     <visual>
       <geometry>
@@ -40,30 +37,28 @@
       <material name="red">
         <color rgba="1.0 0 0 ${transparency}" />
       </material>
-      <origin xyz="0.0 0.0 ${link0_width * 0.5}" rpy="0 0 0" />
     </visual>
     <collision>
       <geometry>
         <box size="${link0_length} ${link0_width} ${link0_width}" />
       </geometry>
-      <origin xyz="0.0 0.0 ${link0_width * 0.5}" rpy="0 0 0" />
     </collision>
     <xacro:box_inertial_matrix m="${link_mass}" l="${link0_length}" w="${link0_width}" h="${link0_width}" />
   </link>
-
+  
   <joint name="link0_to_platform" type="prismatic">
     <parent link="platform" />
     <child link="link0" />
-    <origin xyz="0.0 0.0 ${platform_length}" rpy="0 0 0" />
+    <origin xyz="0.0 0.0 ${platform_length * 0.5 + link0_width * 0.5}" rpy="0 0 0" />
     <axis xyz="0 1 0" />
     <limit lower="-${platform_width * 0.5 - link0_width * 0.5}" upper="${platform_width * 0.5 - link0_width * 0.5}" effort="10.0" velocity="1.0" />
     <dynamics D="1" K="7000" damping="0.003" friction="0.0" mu_coulomb="0" mu_viscous="16" />
   </joint>
-
+  
   <gazebo reference="link0">
     <material>Gazebo/Red</material>
   </gazebo>
-
+  
   <link name="link1">
     <visual>
       <geometry>
@@ -72,30 +67,28 @@
       <material name="green">
         <color rgba="0 1.0 0 ${transparency}" />
       </material>
-      <origin xyz="0.0 0.0 ${link1_length * 0.5}" rpy="0 0 0" />
     </visual>
     <collision>
       <geometry>
         <box size="${link1_width} ${link1_width} ${link1_length}" />
       </geometry>
-      <origin xyz="0.0 0.0 ${link1_length * 0.5}" rpy="0 0 0" />
     </collision>
     <xacro:box_inertial_matrix m="${link_mass}" l="${link1_width}" w="${link1_width}" h="${link1_length}" />
   </link>
-
+  
   <joint name="link1_to_link0" type="prismatic">
     <parent link="link0" />
     <child link="link1" />
-    <origin xyz="0.0 0.0 ${link0_width}" rpy="0 0 0" />
+    <origin xyz="0.0 0.0 ${link0_width * 0.5 + link1_length * 0.5}" rpy="0 0 0" />
     <axis xyz="1 0 0" />
     <limit lower="-${link0_length * 0.5 - link1_width * 0.5}" upper="${link0_length * 0.5 - link1_width * 0.5}" effort="10.0" velocity="1.0" />
     <dynamics D="1" K="7000" damping="0.003" friction="0.0" mu_coulomb="0" mu_viscous="16" />
   </joint>
-
+  
   <gazebo reference="link1">
     <material>Gazebo/Green</material>
   </gazebo>
-
+  
   <link name="link2">
     <visual>
       <geometry>
@@ -104,72 +97,66 @@
       <material name="red">
         <color rgba="1.0 0 0 ${transparency}" />
       </material>
-      <origin xyz="0.0 0.0 ${link2_length * 0.5}" rpy="0 0 0" />
     </visual>
     <collision>
       <geometry>
         <box size="${link2_width} ${link2_width} ${link2_length}" />
       </geometry>
-      <origin xyz="0.0 0.0 ${link2_length * 0.5}" rpy="0 0 0" />
     </collision>
     <xacro:box_inertial_matrix m="${link_mass}" l="${link2_width}" w="${link2_width}" h="${link2_length}" />
   </link>
-
+  
   <joint name="link2_to_link1" type="continuous">
     <parent link="link1" />
     <child link="link2" />
-    <origin xyz="0.0 0.0 ${link1_length}" rpy="0 0 0" />
+    <origin xyz="0.0 0.0 ${link1_length * 0.5 + link2_length * 0.5}" rpy="0 0 0" />
     <axis xyz="0 0 1" />
     <dynamics D="1" K="7000" damping="0.003" friction="0.0" mu_coulomb="0" mu_viscous="16" />
   </joint>
-
+  
   <gazebo reference="link2">
     <material>Gazebo/Red</material>
   </gazebo>
-
+  
   <link name="link3">
     <visual>
       <geometry>
         <box size="${link3_length} ${link3_width} ${link3_width}" />
       </geometry>
       <material name="green"></material>
-      <origin xyz="${link3_length * 0.5} 0.0 0.0" rpy="0 0 0" />
     </visual>
     <collision>
       <geometry>
         <box size="${link3_length} ${link3_width} ${link3_width}" />
       </geometry>
-      <origin xyz="${link3_length * 0.5} 0.0 0.0" rpy="0 0 0" />
     </collision>
     <xacro:box_inertial_matrix m="${link_mass}" l="${link3_length}" w="${link3_width}" h="${link3_width}" />
   </link>
-
+  
   <joint name="link3_to_link2" type="prismatic">
     <parent link="link2" />
     <child link="link3" />
-    <origin xyz="${link3_width * 0.5} 0.0 ${link2_length * 0.5}" rpy="0 0 0" />
+    <origin xyz="${link3_length * 0.5 + link2_width * 0.5} 0 0" rpy="0 0 0" />
     <axis xyz="0 0 1" />
     <limit lower="-${link2_length * 0.5 - link3_width * 0.5}" upper="${link2_length * 0.5 - link3_width * 0.5}" effort="10.0" velocity="1.0" />
     <dynamics D="1" K="7000" damping="0.003" friction="0.0" mu_coulomb="0" mu_viscous="16" />
   </joint>
-
+  
   <gazebo reference="link3">
     <material>Gazebo/Green</material>
   </gazebo>
-
+  
   <link name="link4">
     <visual>
       <geometry>
         <box size="${link4_length} ${link4_width} ${link4_width}" />
       </geometry>
       <material name="red"></material>
-      <origin xyz="${link4_length * 0.5} 0.0 0.0" rpy="0 0 0" />
     </visual>
     <collision>
       <geometry>
         <box size="${link4_length} ${link4_width} ${link4_width}" />
       </geometry>
-      <origin xyz="${link4_length * 0.5} 0.0 0.0" rpy="0 0 0" />
     </collision>
     <xacro:box_inertial_matrix m="${link_mass}" l="${link4_length}" w="${link4_width}" h="${link4_width}" />
   </link>
@@ -177,14 +164,14 @@
   <joint name="link4_to_link3" type="continuous">
     <parent link="link3" />
     <child link="link4" />
-    <origin xyz="${link3_length} 0.0 0.0" rpy="0 0 0" />
+    <origin xyz="${link3_length * 0.5 + link4_length * 0.5} 0.0 0.0" rpy="0 0 0" />
     <axis xyz="1 0 0" />
     <dynamics damping="0.7" friction="0.0" />
     <dynamics D="1" K="7000" damping="0.003" friction="0.0" mu_coulomb="0" mu_viscous="16" />
   </joint>
-
+  
   <gazebo reference="link4">
     <material>Gazebo/Red</material>
-  </gazebo>
+  </gazebo> 
 
 </robot>
