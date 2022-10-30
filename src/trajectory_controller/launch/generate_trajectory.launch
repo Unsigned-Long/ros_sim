@@ -1,0 +1,5 @@
+<launch>
+
+  <node name="generate_trajectory" pkg="trajectory_controller" type="generate_trajectory" respawn="false" output="screen"></node>
+
+</launch>
