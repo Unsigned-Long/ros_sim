@@ -100,7 +100,4 @@
   <xacro:include filename="sensor-imu.xacro" />
   <xacro:include filename="sensor-camera.xacro" />
 
-  <xacro:include filename="wheels.xacro" />
-  <xacro:include filename="motion.xacro" />
-
 </robot>

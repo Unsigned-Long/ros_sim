@@ -235,8 +235,4 @@
   <xacro:gazebo-joint joint="link5_to_link4" transmission="hardware_interface/VelocityJointInterface" />
   <xacro:gazebo-joint joint="link5_to_link4" transmission="hardware_interface/EffortJointInterface" />
 
-  <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"></plugin>
-  </gazebo>
-
 </robot>
