@@ -61,6 +61,68 @@
     <material>Gazebo/Blue</material>
   </gazebo>
 
+  <link name="link0">
+    <visual>
+      <geometry>
+        <box size="${link0_length} ${link0_width} ${link0_width}" />
+      </geometry>
+      <material name="red">
+        <color rgba="1.0 0 0 0.5" />
+      </material>
+      <origin xyz="0.0 0.0 ${link0_width * 0.5}" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${link0_length} ${link0_width} ${link0_width}" />
+      </geometry>
+      <origin xyz="0.0 0.0 ${link0_width * 0.5}" rpy="0 0 0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${link_mass}" l="${link0_length}" w="${link0_width}" h="${link0_width}" />
+  </link>
+
+  <joint name="link0_to_base" type="prismatic">
+    <parent link="base" />
+    <child link="link0" />
+    <origin xyz="0.0 0.0 ${base_length}" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-${base_width * 0.5 - link0_width * 0.5}" upper="${base_width * 0.5 - link0_width * 0.5}" effort="10.0" velocity="1.0" />
+  </joint>
+
+  <gazebo reference="link0">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <link name="link1">
+    <visual>
+      <geometry>
+        <box size="${link1_width} ${link1_width} ${link1_length}" />
+      </geometry>
+      <material name="green">
+        <color rgba="0 1.0 0 0.5" />
+      </material>
+      <origin xyz="0.0 0.0 ${link1_length * 0.5}" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${link1_width} ${link1_width} ${link1_length}" />
+      </geometry>
+      <origin xyz="0.0 0.0 ${link1_length * 0.5}" rpy="0 0 0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${link_mass}" l="${link1_width}" w="${link1_width}" h="${link1_length}" />
+  </link>
+
+  <joint name="link1_to_link0" type="prismatic">
+    <parent link="link0" />
+    <child link="link1" />
+    <origin xyz="0.0 0.0 ${link0_width}" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-${link0_length * 0.5 - link1_width * 0.5}" upper="${link0_length * 0.5 - link1_width * 0.5}" effort="10.0" velocity="1.0" />
+  </joint>
+
+  <gazebo reference="link1">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
   <link name="link2">
     <visual>
       <geometry>
@@ -80,10 +142,10 @@
     <xacro:box_inertial_matrix m="${link_mass}" l="${link2_width}" w="${link2_width}" h="${link2_length}" />
   </link>
   /moveit_tutorials/doc/pilz_industrial_motion_planner/pilz_industrial_motion_planner.html
-  <joint name="link2_to_base" type="continuous">
-    <parent link="base" />
+  <joint name="link2_to_link1" type="continuous">
+    <parent link="link1" />
     <child link="link2" />
-    <origin xyz="0.0 0.0 ${base_length}" rpy="0 0 0" />
+    <origin xyz="0.0 0.0 ${link1_length}" rpy="0 0 0" />
     <axis xyz="0 0 1" />
   </joint>
 
