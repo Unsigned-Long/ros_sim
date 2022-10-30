@@ -9,16 +9,16 @@
   <xacro:property name="link0_length" value="10.0" />
   <xacro:property name="link0_width" value="0.06" />
 
-  <xacro:property name="link1_length" value="0.3" />
+  <xacro:property name="link1_length" value="0.06" />
   <xacro:property name="link1_width" value="0.06" />
   
   <xacro:property name="link2_length" value="3.0" />
   <xacro:property name="link2_width" value="0.06" />
   
-  <xacro:property name="link3_length" value="0.1" />
+  <xacro:property name="link3_length" value="0.06" />
   <xacro:property name="link3_width" value="0.06" />
   
-  <xacro:property name="link4_length" value="0.2" />
+  <xacro:property name="link4_length" value="0.15" />
   <xacro:property name="link4_width" value="0.06" />
   
   <xacro:property name="link5_length" value="0.1" />
@@ -42,7 +42,7 @@
   <xacro:property name="lidar_cylinder_length" value="0.03" />
   
   <xacro:property name="arm_cylinder_radius" value="0.005" />
-  <xacro:property name="arm_cylinder_length" value="0.04" />
+  <xacro:property name="arm_cylinder_length" value="0.03" />
   
   <xacro:property name="wheel_cylinder_radius" value="0.08" />
   <xacro:property name="wheel_cylinder_length" value="0.04" />
