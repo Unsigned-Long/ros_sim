@@ -1,0 +1,271 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+
+  <xacro:property name="link0_length" value="10.0" />
+  <xacro:property name="link0_width" value="0.1" />
+
+  <xacro:property name="link1_length" value="0.3" />
+  <xacro:property name="link1_width" value="0.1" />
+
+  <xacro:property name="link2_length" value="3.0" />
+  <xacro:property name="link2_width" value="0.1" />
+
+  <xacro:property name="link3_length" value="0.1" />
+  <xacro:property name="link3_width" value="0.1" />
+
+  <xacro:property name="link4_length" value="0.2" />
+  <xacro:property name="link4_width" value="0.1" />
+
+  <xacro:property name="link5_length" value="0.1" />
+  <xacro:property name="link5_width" value="0.1" />
+
+  <xacro:property name="head_size" value="0.1" />
+  <xacro:property name="head_mass" value="0.001" />
+
+  <xacro:property name="base_width" value="10.0" />
+  <xacro:property name="base_length" value="0.1" />
+  <xacro:property name="base_mass" value="100.0" />
+
+  <xacro:property name="link_mass" value="0.001" />
+
+  <xacro:include filename="$(find arm_robot)/model/util/util.xacro" />
+
+  <link name="base_footprint"></link>
+
+  <link name="base">
+    <visual>
+      <geometry>
+        <box size="${base_width} ${base_width} ${base_length}" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1.0 0.5" />
+      </material>
+      <origin xyz="0.0 0.0 ${base_length * 0.5}" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${base_width} ${base_width} ${base_length}" />
+      </geometry>
+      <origin xyz="0.0 0.0 ${base_length * 0.5}" rpy="0 0 0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${base_mass}" l="${link0_length}" w="${base_width}" h="${base_length}" />
+  </link>
+
+  <joint name="base_to_footprint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="base" />
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <gazebo reference="base">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <link name="link0">
+    <visual>
+      <geometry>
+        <box size="${link0_length} ${link0_width} ${link0_width}" />
+      </geometry>
+      <material name="red">
+        <color rgba="1.0 0 0 0.5" />
+      </material>
+      <origin xyz="0.0 0.0 ${link0_width * 0.5}" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${link0_length} ${link0_width} ${link0_width}" />
+      </geometry>
+      <origin xyz="0.0 0.0 ${link0_width * 0.5}" rpy="0 0 0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${link_mass}" l="${link0_length}" w="${link0_width}" h="${link0_width}" />
+  </link>
+
+  <joint name="link0_to_base" type="prismatic">
+    <parent link="base" />
+    <child link="link0" />
+    <origin xyz="0.0 0.0 ${base_length}" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-${base_width * 0.5 - link0_width * 0.5}" upper="${base_width * 0.5 - link0_width * 0.5}" effort="10.0" velocity="1.0" />
+  </joint>
+
+  <gazebo reference="link0">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <link name="link1">
+    <visual>
+      <geometry>
+        <box size="${link1_width} ${link1_width} ${link1_length}" />
+      </geometry>
+      <material name="green">
+        <color rgba="0 1.0 0 0.5" />
+      </material>
+      <origin xyz="0.0 0.0 ${link1_length * 0.5}" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${link1_width} ${link1_width} ${link1_length}" />
+      </geometry>
+      <origin xyz="0.0 0.0 ${link1_length * 0.5}" rpy="0 0 0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${link_mass}" l="${link1_width}" w="${link1_width}" h="${link1_length}" />
+  </link>
+
+  <joint name="link1_to_link0" type="prismatic">
+    <parent link="link0" />
+    <child link="link1" />
+    <origin xyz="0.0 0.0 ${link0_width}" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-${link0_length * 0.5 - link1_width * 0.5}" upper="${link0_length * 0.5 - link1_width * 0.5}" effort="10.0" velocity="1.0" />
+  </joint>
+
+  <gazebo reference="link1">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <link name="link2">
+    <visual>
+      <geometry>
+        <box size="${link2_width} ${link2_width} ${link2_length}" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1.0 0.5" />
+      </material>
+      <origin xyz="0.0 0.0 ${link2_length * 0.5}" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${link2_width} ${link2_width} ${link2_length}" />
+      </geometry>
+      <origin xyz="0.0 0.0 ${link2_length * 0.5}" rpy="0 0 0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${link_mass}" l="${link2_width}" w="${link2_width}" h="${link2_length}" />
+  </link>
+  /moveit_tutorials/doc/pilz_industrial_motion_planner/pilz_industrial_motion_planner.html
+  <joint name="link2_to_link1" type="continuous">
+    <parent link="link1" />
+    <child link="link2" />
+    <origin xyz="0.0 0.0 ${link1_length}" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <gazebo reference="link2">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <link name="link3">
+    <visual>
+      <geometry>
+        <box size="${link3_length} ${link3_width} ${link3_width}" />
+      </geometry>
+      <material name="green"></material>
+      <origin xyz="${link3_length * 0.5} 0.0 0.0" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${link3_length} ${link3_width} ${link3_width}" />
+      </geometry>
+      <origin xyz="${link3_length * 0.5} 0.0 0.0" rpy="0 0 0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${link_mass}" l="${link3_length}" w="${link3_width}" h="${link3_width}" />
+  </link>
+
+  <joint name="link3_to_link2" type="prismatic">
+    <parent link="link2" />
+    <child link="link3" />
+    <origin xyz="${link3_width * 0.5} 0.0 ${link2_length * 0.5}" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-${link2_length * 0.5 - link3_width * 0.5}" upper="${link2_length * 0.5 - link3_width * 0.5}" effort="10.0" velocity="1.0" />
+  </joint>
+
+  <gazebo reference="link3">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <link name="link4">
+    <visual>
+      <geometry>
+        <box size="${link4_length} ${link4_width} ${link4_width}" />
+      </geometry>
+      <material name="red"></material>
+      <origin xyz="${link4_length * 0.5} 0.0 0.0" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${link4_length} ${link4_width} ${link4_width}" />
+      </geometry>
+      <origin xyz="${link4_length * 0.5} 0.0 0.0" rpy="0 0 0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${link_mass}" l="${link4_length}" w="${link4_width}" h="${link4_width}" />
+  </link>
+
+  <joint name="link4_to_link3" type="continuous">
+    <parent link="link3" />
+    <child link="link4" />
+    <origin xyz="${link3_length} 0.0 0.0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <gazebo reference="link4">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <link name="link5">
+    <visual>
+      <geometry>
+        <box size="${link5_width} ${link5_length} ${link5_width}" />
+      </geometry>
+      <material name="yellow">
+        <color rgba="1.0 1.0 0 0.5" />
+      </material>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${link5_width} ${link5_length} ${link5_width}" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+    </collision>
+    <xacro:box_inertial_matrix m="${link_mass}" l="${link5_width}" w="${link5_length}" h="${link5_width}" />
+  </link>
+
+  <joint name="link5_to_link4" type="continuous">
+    <parent link="link4" />
+    <child link="link5" />
+    <origin xyz="${link4_length - link5_width * 0.5} ${link5_length} 0.0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <gazebo reference="link5">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <xacro:gazebo-joint joint="link0_to_base" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="link0_to_base" transmission="hardware_interface/VelocityJointInterface" />
+  <xacro:gazebo-joint joint="link0_to_base" transmission="hardware_interface/EffortJointInterface" />
+
+  <xacro:gazebo-joint joint="link1_to_link0" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="link1_to_link0" transmission="hardware_interface/VelocityJointInterface" />
+  <xacro:gazebo-joint joint="link1_to_link0" transmission="hardware_interface/EffortJointInterface" />
+
+  <xacro:gazebo-joint joint="link2_to_link1" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="link2_to_link1" transmission="hardware_interface/VelocityJointInterface" />
+  <xacro:gazebo-joint joint="link2_to_link1" transmission="hardware_interface/EffortJointInterface" />
+
+  <xacro:gazebo-joint joint="link3_to_link2" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="link3_to_link2" transmission="hardware_interface/VelocityJointInterface" />
+  <xacro:gazebo-joint joint="link3_to_link2" transmission="hardware_interface/EffortJointInterface" />
+
+  <xacro:gazebo-joint joint="link4_to_link3" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="link4_to_link3" transmission="hardware_interface/VelocityJointInterface" />
+  <xacro:gazebo-joint joint="link4_to_link3" transmission="hardware_interface/EffortJointInterface" />
+
+  <xacro:gazebo-joint joint="link5_to_link4" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="link5_to_link4" transmission="hardware_interface/VelocityJointInterface" />
+  <xacro:gazebo-joint joint="link5_to_link4" transmission="hardware_interface/EffortJointInterface" />
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"></plugin>
+  </gazebo>
+
+</robot>
