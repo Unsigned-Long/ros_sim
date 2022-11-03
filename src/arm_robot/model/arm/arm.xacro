@@ -61,14 +61,14 @@
   </gazebo>
 
   <link name="link1">
-    <visual>
+    <!-- <visual>
       <geometry>
         <box size="${link1_width} ${link1_width} ${link1_length}" />
       </geometry>
       <material name="green">
         <color rgba="0 1.0 0 ${transparency}" />
       </material>
-    </visual>
+    </visual> -->
     <collision>
       <geometry>
         <box size="${link1_width} ${link1_width} ${link1_length}" />
@@ -92,14 +92,14 @@
   </gazebo>
 
   <link name="link2">
-    <visual>
+    <!-- <visual>
       <geometry>
         <box size="${link2_width} ${link2_width} ${link2_length}" />
       </geometry>
       <material name="red">
         <color rgba="1.0 0 0 ${transparency}" />
       </material>
-    </visual>
+    </visual> -->
     <collision>
       <geometry>
         <box size="${link2_width} ${link2_width} ${link2_length}" />
@@ -122,12 +122,12 @@
   </gazebo>
 
   <link name="link3">
-    <visual>
+    <!-- <visual>
       <geometry>
         <box size="${link3_length} ${link3_width} ${link3_width}" />
       </geometry>
       <material name="green"></material>
-    </visual>
+    </visual> -->
     <collision>
       <geometry>
         <box size="${link3_length} ${link3_width} ${link3_width}" />
@@ -151,12 +151,12 @@
   </gazebo>
 
   <link name="link4">
-    <visual>
+    <!-- <visual>
       <geometry>
         <box size="${link4_length} ${link4_width} ${link4_width}" />
       </geometry>
       <material name="red"></material>
-    </visual>
+    </visual> -->
     <collision>
       <geometry>
         <box size="${link4_length} ${link4_width} ${link4_width}" />
