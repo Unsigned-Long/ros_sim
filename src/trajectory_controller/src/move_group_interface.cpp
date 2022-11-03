@@ -157,7 +157,7 @@ int main(int argc, char **argv) {
     moveGroupInterface.setMaxVelocityScalingFactor(0.1);
     moveGroupInterface.setMaxAccelerationScalingFactor(0.1);
 
-    for (int i = 0; i < poseSeq.size(); i += 10) {
+    for (int i = 0; i < poseSeq.size(); i += 5) {
         const auto &p = poseSeq.at(i);
 
         geometry_msgs::Pose targetPose;
@@ -174,6 +174,10 @@ int main(int argc, char **argv) {
         LOG_PROCESS("moving to pose: ", p)
 
         moveGroupInterface.move();
+
+        if(i==0){
+          visualTools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the trajectory");
+        }
     }
 
 
