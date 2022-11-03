@@ -51,7 +51,7 @@
     <child link="link0" />
     <origin xyz="0.0 0.0 ${platform_length * 0.5 + link0_width * 0.5}" rpy="0 0 0" />
     <axis xyz="0 1 0" />
-    <limit lower="-${platform_width * 0.5 - link0_width * 0.5}" upper="${platform_width * 0.5 - link0_width * 0.5}" effort="10.0" velocity="1.0" />
+    <limit lower="-${platform_width * 0.5 - link0_width * 0.5}" upper="${platform_width * 0.5 - link0_width * 0.5}" effort="10000000.0" velocity="1000000.0" />
     <xacro:joint-dynamic />
 
   </joint>
@@ -82,7 +82,7 @@
     <child link="link1" />
     <origin xyz="0.0 0.0 ${link0_width * 0.5 + link1_length * 0.5}" rpy="0 0 0" />
     <axis xyz="1 0 0" />
-    <limit lower="-${link0_length * 0.5 - link1_width * 0.5}" upper="${link0_length * 0.5 - link1_width * 0.5}" effort="10.0" velocity="1.0" />
+    <limit lower="-${link0_length * 0.5 - link1_width * 0.5}" upper="${link0_length * 0.5 - link1_width * 0.5}" effort="10000000.0" velocity="1000000.0" />
     <xacro:joint-dynamic />
 
   </joint>
@@ -140,7 +140,7 @@
     <child link="link3" />
     <origin xyz="0 ${link3_width * 0.5 + link2_width * 0.5} 0" rpy="0 0 0" />
     <axis xyz="0 0 1" />
-    <limit lower="-${link2_length * 0.5 - link3_width * 0.5}" upper="${link2_length * 0.5 - link3_width * 0.5}" effort="10.0" velocity="1.0" />
+    <limit lower="-${link2_length * 0.5 - link3_width * 0.5}" upper="${link2_length * 0.5 - link3_width * 0.5}" effort="10000000.0" velocity="1000000.0" />
     <xacro:joint-dynamic />
 
   </joint>

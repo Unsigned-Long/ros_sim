@@ -154,8 +154,8 @@ int main(int argc, char **argv) {
     // and should be preferred. Note that the pose goal we had set earlier is still active,
     // so the robot will try to move to that goal.
 
-    moveGroupInterface.setMaxVelocityScalingFactor(0.5);
-    moveGroupInterface.setMaxAccelerationScalingFactor(0.5);
+    moveGroupInterface.setMaxVelocityScalingFactor(0.1);
+    moveGroupInterface.setMaxAccelerationScalingFactor(0.1);
 
     for (int i = 0; i < poseSeq.size(); i += 10) {
         const auto &p = poseSeq.at(i);
