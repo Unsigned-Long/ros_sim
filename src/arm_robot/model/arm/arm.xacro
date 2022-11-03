@@ -43,7 +43,7 @@
         <box size="${link0_length} ${link0_width} ${link0_width}" />
       </geometry>
     </collision>
-    <xacro:box_inertial_matrix m="${link_mass}" l="${link0_length}" w="${link0_width}" h="${link0_width}" />
+    <xacro:box_inertial_matrix m="${link0_mass}" l="${link0_length}" w="${link0_width}" h="${link0_width}" />
   </link>
 
   <joint name="link0_to_platform" type="prismatic">
@@ -74,7 +74,7 @@
         <box size="${link1_width} ${link1_width} ${link1_length}" />
       </geometry>
     </collision>
-    <xacro:box_inertial_matrix m="${link_mass}" l="${link1_width}" w="${link1_width}" h="${link1_length}" />
+    <xacro:box_inertial_matrix m="${link1_mass}" l="${link1_width}" w="${link1_width}" h="${link1_length}" />
   </link>
 
   <joint name="link1_to_link0" type="prismatic">
@@ -105,7 +105,7 @@
         <box size="${link2_width} ${link2_width} ${link2_length}" />
       </geometry>
     </collision>
-    <xacro:box_inertial_matrix m="${link_mass}" l="${link2_width}" w="${link2_width}" h="${link2_length}" />
+    <xacro:box_inertial_matrix m="${link2_mass}" l="${link2_width}" w="${link2_width}" h="${link2_length}" />
   </link>
 
   <joint name="link2_to_link1" type="continuous">
@@ -133,7 +133,7 @@
         <box size="${link3_length} ${link3_width} ${link3_width}" />
       </geometry>
     </collision>
-    <xacro:box_inertial_matrix m="${link_mass}" l="${link3_length}" w="${link3_width}" h="${link3_width}" />
+    <xacro:box_inertial_matrix m="${link3_mass}" l="${link3_length}" w="${link3_width}" h="${link3_width}" />
   </link>
 
   <joint name="link3_to_link2" type="prismatic">
@@ -162,7 +162,7 @@
         <box size="${link4_length} ${link4_width} ${link4_width}" />
       </geometry>
     </collision>
-    <xacro:box_inertial_matrix m="${link_mass}" l="${link4_length}" w="${link4_width}" h="${link4_width}" />
+    <xacro:box_inertial_matrix m="${link4_mass}" l="${link4_length}" w="${link4_width}" h="${link4_width}" />
   </link>
 
   <joint name="link4_to_link3" type="continuous">
