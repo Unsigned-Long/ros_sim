@@ -68,7 +68,12 @@
   </xacro:macro>
 
   <xacro:macro name="remove-collision">
-    <origin xyz="0.0 0.0 10000.0" rpy="0 0 0" />
+    <collision>
+      <geometry>
+        <box size="0.001 0.001 0.001" />
+      </geometry>
+      <origin xyz="0.0 0.0 1000.0" rpy="0 0 0" />
+    </collision>
   </xacro:macro>
 
 </robot>

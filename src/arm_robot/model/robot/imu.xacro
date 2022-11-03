@@ -10,12 +10,7 @@
         <color rgba="0.0 1.0 0.0 ${transparency}" />
       </material>
     </visual>
-    <collision>
-      <geometry>
-        <box size="${imu_box_size} ${imu_box_size} ${imu_box_size}" />
-      </geometry>
-      <xacro:remove-collision />
-    </collision>
+    <xacro:remove-collision />
     <xacro:box_inertial_matrix m="${imu_mass}" l="${imu_box_size}" w="${imu_box_size}" h="${imu_box_size}" />
   </link>
 
