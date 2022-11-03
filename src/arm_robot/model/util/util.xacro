@@ -67,13 +67,4 @@
     <dynamics D="1" K="7000" damping="0.003" friction="10.0" mu_coulomb="0" mu_viscous="16" />
   </xacro:macro>
 
-  <xacro:macro name="remove-collision">
-    <collision>
-      <geometry>
-        <box size="0.001 0.001 0.001" />
-      </geometry>
-      <origin xyz="0.0 0.0 1000.0" rpy="0 0 0" />
-    </collision>
-  </xacro:macro>
-
 </robot>

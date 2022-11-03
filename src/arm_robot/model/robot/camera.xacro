@@ -10,7 +10,11 @@
         <color rgba="0.0 0.0 1.0 ${transparency}" />
       </material>
     </visual>
-    <xacro:remove-collision />
+    <collision>
+      <geometry>
+        <box size="${camera_box_size} ${camera_box_size} ${camera_box_size}" />
+      </geometry>
+    </collision>
     <xacro:box_inertial_matrix m="${camera_mass}" l="${camera_box_size}" w="${camera_box_size}" h="${camera_box_size}" />
   </link>
 
