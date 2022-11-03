@@ -14,7 +14,7 @@
       <geometry>
         <box size="${imu_box_size} ${imu_box_size} ${imu_box_size}" />
       </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <xacro:remove-collision />
     </collision>
     <xacro:box_inertial_matrix m="${imu_mass}" l="${imu_box_size}" w="${imu_box_size}" h="${imu_box_size}" />
   </link>

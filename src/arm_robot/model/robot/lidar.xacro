@@ -14,7 +14,7 @@
       <geometry>
         <cylinder radius="${arm_cylinder_radius}" length="${arm_cylinder_length}" />
       </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <xacro:remove-collision />
     </collision>
     <xacro:cylinder_inertial_matrix m="${arm_mass}" r="${arm_cylinder_radius}" h="${arm_cylinder_length}" />
   </link>
@@ -46,7 +46,7 @@
       <geometry>
         <cylinder radius="${lidar_cylinder_radius}" length="${lidar_cylinder_length}" />
       </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <xacro:remove-collision />
     </collision>
     <xacro:cylinder_inertial_matrix m="${lidar_mass}" r="${lidar_cylinder_radius}" h="${lidar_cylinder_length}" />
   </link>

@@ -22,7 +22,7 @@
   <xacro:property name="link4_width" value="0.06" />
   
   <xacro:property name="platform_width" value="10.0" />
-  <xacro:property name="platform_length" value="0.1" />
+  <xacro:property name="platform_length" value="0.001" />
   <xacro:property name="platform_mass" value="100.0" />
   
   <xacro:property name="link0_mass" value="10" />

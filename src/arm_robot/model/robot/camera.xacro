@@ -14,7 +14,7 @@
       <geometry>
         <box size="${camera_box_size} ${camera_box_size} ${camera_box_size}" />
       </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <xacro:remove-collision />
     </collision>
     <xacro:box_inertial_matrix m="${camera_mass}" l="${camera_box_size}" w="${camera_box_size}" h="${camera_box_size}" />
   </link>

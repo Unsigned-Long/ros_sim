@@ -14,7 +14,7 @@
       <geometry>
         <box size="${base_box_size} ${base_box_size} ${base_box_size}" />
       </geometry>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <xacro:remove-collision />
     </collision>
     <xacro:box_inertial_matrix m="${base_mass}" l="${base_box_size}" w="${base_box_size}" h="${base_box_size}" />
   </link>
