@@ -1,0 +1,4 @@
+<launch>
+    <node name="firefly_traj_controller" pkg="firefly" type="firefly_traj_controller" respawn="false"
+          output="screen"/>
+</launch>

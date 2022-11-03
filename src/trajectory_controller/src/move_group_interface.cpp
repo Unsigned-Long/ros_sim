@@ -175,8 +175,8 @@ int main(int argc, char **argv) {
 
         moveGroupInterface.move();
 
-        if(i==0){
-          visualTools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the trajectory");
+        if (i == 0) {
+            visualTools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the trajectory");
         }
     }
 

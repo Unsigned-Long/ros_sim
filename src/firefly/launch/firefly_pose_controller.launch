@@ -1,0 +1,4 @@
+<launch>
+    <node name="firefly_pose_controller" pkg="firefly" type="firefly_pose_controller" respawn="false"
+          output="screen"/>
+</launch>
