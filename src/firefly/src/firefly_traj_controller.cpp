@@ -9,6 +9,7 @@
 #include "artwork/logger/logger.h"
 #include "artwork/csv/csv.h"
 #include <mav_msgs/conversions.h>
+#include "sensor_msgs/Imu.h"
 
 struct Pose {
     double x, y, z;
@@ -34,6 +35,11 @@ std::vector<Pose> ReadPoseVecFromFile(const std::string &str) {
 
 static const int64_t kNanoSecondsInSecond = 1000000000;
 
+bool sim_running = false;
+
+void callback(const sensor_msgs::ImuPtr &msg) {
+    sim_running = true;
+}
 
 int main(int argc, char **argv) {
     ros::init(argc, argv, "firefly_pose_controller");
@@ -44,6 +50,14 @@ int main(int argc, char **argv) {
             "/home/csl/ros_ws/sim-scene/src/trajectory_controller/trajectory/trajectory.csv"
     );
 
+    ros::Subscriber sub = handle.subscribe("/firefly/imu", 10, &callback);
+    ROS_INFO("Wait for simulation to become ready...");
+
+    while (!sim_running && ros::ok()) {
+        ros::spinOnce();
+        ros::Duration(0.1).sleep();
+    }
+
     LOG_PROCESS("start sim.")
     auto posePublisher = handle.advertise<trajectory_msgs::MultiDOFJointTrajectory>("/firefly/command/trajectory", 10);
 
@@ -52,6 +66,7 @@ int main(int argc, char **argv) {
     msg->points.resize(waypoints.size());
     msg->joint_names.push_back("base_link");
     int64_t time_from_start_ns = 0;
+
     for (size_t i = 0; i < waypoints.size(); ++i) {
         const auto &wp = waypoints[i];
 
@@ -68,7 +83,7 @@ int main(int argc, char **argv) {
 
         LOG_VAR(time_from_start_ns, wp.x, wp.y, wp.z, angles(2))
 
-        time_from_start_ns += static_cast<int64_t>(i * kNanoSecondsInSecond);
+        time_from_start_ns += static_cast<int64_t>(0);
 
         mav_msgs::msgMultiDofJointTrajectoryPointFromEigen(trajectory_point, &msg->points[i]);
     }
