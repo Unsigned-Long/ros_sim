@@ -92,7 +92,7 @@ tinyxml2::XMLNode *GetSimRobotScriptFromDEA(const std::string &filename, tinyxml
     trajectoryElem->SetAttribute("type", "sim-traj");
     for (int i = 0; i < poseSeq.size(); ++i) {
         const auto &pose = poseSeq.at(i);
-        const double timeStamp = i / 10.0;
+        const double timeStamp = i / 20.0;
         auto waypointElem = doc.NewElement("waypoint");
 
         auto timeElem = doc.NewElement("time");

@@ -10,3 +10,4 @@ SDF_NAME=${PKG_PATH}/model/sdf/sim-robot.sdf
 # xacro to urdf
 rosrun xacro xacro ${XACRO_NAME} > ${URDF_NAME}
 gz sdf -p ${URDF_NAME} > ${SDF_NAME}
+roslaunch scene generate-actor.launch

@@ -1,7 +1,7 @@
 <robot name="my_sensors" xmlns:xacro="http://wiki.ros.org/xacro">
   <gazebo reference="camera">
     <sensor type="camera" name="camera_node">
-      <update_rate>30.0</update_rate> 
+      <update_rate>10.0</update_rate> 
       <camera name="head">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
@@ -38,7 +38,7 @@
   <gazebo>
     <plugin name="camera_pose" filename="libgazebo_ros_p3d.so">
       <alwaysOn>true</alwaysOn>
-      <updateRate>50.0</updateRate>
+      <updateRate>10.0</updateRate>
       <bodyName>camera</bodyName>
       <topicName>camera_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>
