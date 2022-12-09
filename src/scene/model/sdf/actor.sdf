@@ -210,7 +210,7 @@
                 </noise>
             </ray>
             <plugin name="gazebo_rplidar" filename="libgazebo_ros_velodyne_laser.so">
-                <topicName>/sim_lidar/scan</topicName>
+                <topicName>/sim_lidar/frame</topicName>
                 <frameName>/lidar</frameName>
                 <organize_cloud>1</organize_cloud>
                 <min_range>0.10</min_range>
@@ -242,7 +242,7 @@
                 <alwaysOn>1</alwaysOn>
                 <updateRate>0.0</updateRate>
                 <cameraName>/sim_camera</cameraName>
-                <imageTopicName>image</imageTopicName>
+                <imageTopicName>frame</imageTopicName>
                 <cameraInfoTopicName>camera_info</cameraInfoTopicName>
                 <frameName>camera</frameName>
                 <hackBaseline>0.07</hackBaseline>
@@ -253,24 +253,6 @@
                 <distortionT2>0.0</distortionT2>
             </plugin>
             <pose>0.08 0 0.08 0 -0 0</pose>
-        </sensor>
-        <gravity>1</gravity>
-        <sensor name="imu_sensor" type="imu">
-            <always_on>1</always_on>
-            <update_rate>400</update_rate>
-            <visualize>1</visualize>
-            <topic>__default_topic__</topic>
-            <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
-                <topicName>/sim_imu/frame</topicName>
-                <bodyName>imu</bodyName>
-                <updateRateHZ>400.0</updateRateHZ>
-                <gaussianNoise>0.0</gaussianNoise>
-                <xyzOffset>0 0 0</xyzOffset>
-                <rpyOffset>0 0 0</rpyOffset>
-                <frameName>imu</frameName>
-                <initialOrientationAsReference>0</initialOrientationAsReference>
-            </plugin>
-            <pose>-0.08 0 0.08 0 -0 0</pose>
         </sensor>
     </link>
     <plugin name="base_footprint_pose" filename="libgazebo_ros_p3d.so">

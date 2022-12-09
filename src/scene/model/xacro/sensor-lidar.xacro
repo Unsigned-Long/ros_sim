@@ -32,7 +32,7 @@
         </noise>
       </ray>
       <plugin name="gazebo_rplidar" filename="libgazebo_ros_velodyne_laser.so">
-        <topicName>/sim_lidar/scan</topicName>
+        <topicName>/sim_lidar/frame</topicName>
         <frameName>/lidar</frameName>
         <organize_cloud>true</organize_cloud>
         <min_range>0.10</min_range>

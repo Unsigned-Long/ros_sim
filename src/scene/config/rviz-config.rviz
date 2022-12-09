@@ -70,11 +70,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        back_support_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         base_footprint:
           Alpha: 1
           Show Axes: false
@@ -90,27 +85,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        front_support_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         imu:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         lidar:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -128,25 +108,17 @@ Visualization Manager:
         All Enabled: true
         arm:
           Value: true
-        back_support_wheel:
-          Value: true
         base_footprint:
           Value: true
         base_link:
           Value: true
         camera:
           Value: true
-        front_support_wheel:
-          Value: true
         imu:
-          Value: true
-        left_wheel:
           Value: true
         lidar:
           Value: true
         map:
-          Value: true
-        right_wheel:
           Value: true
       Marker Alpha: 0.5
       Marker Scale: 0.30000001192092896
@@ -161,23 +133,15 @@ Visualization Manager:
               arm:
                 lidar:
                   {}
-              back_support_wheel:
-                {}
               camera:
-                {}
-              front_support_wheel:
                 {}
               imu:
                 {}
-            left_wheel:
-              {}
-            right_wheel:
-              {}
       Update Interval: 0
       Value: true
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /sim_camera/image
+      Image Topic: /sim_camera/frame
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -190,8 +154,8 @@ Visualization Manager:
     - Alpha: 0.800000011920929
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 2.214703321456909
-        Min Value: 0.004074424505233765
+        Max Value: 3.001059055328369
+        Min Value: 0.0009621381759643555
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -210,7 +174,7 @@ Visualization Manager:
       Size (Pixels): 2
       Size (m): 0.009999999776482582
       Style: Points
-      Topic: /sim_lidar/scan
+      Topic: /sim_lidar/frame
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true

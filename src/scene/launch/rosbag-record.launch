@@ -1,10 +1,11 @@
 <launch>
+  <!-- invalid imu output -->
+  <!-- <arg name="imu_topic" value="/sim_imu/frame" /> -->
 
-  <arg name="imu_topic" value="/sim_imu/frame" />
+  <!-- just for visualization, not for solving -->
+  <!-- <arg name="camera_topic" value="/sim_camera/frame" /> -->
 
-  <arg name="camera_topic" value="/sim_camera/image" />
-
-  <arg name="lidar_topic" value="/sim_lidar/scan" />
+  <arg name="lidar_topic" value="/sim_lidar/frame" />
 
   <arg name="imu_odom_topic" value="/imu_ground_truth" />
 
