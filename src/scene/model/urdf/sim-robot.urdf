@@ -205,8 +205,8 @@
           <vertical>
             <samples>32</samples>
             <resolution>1</resolution>
-            <min_angle>-0.26179938779166667</min_angle>
-            <max_angle> 0.26179938779166667</max_angle>
+            <min_angle>-0.5235987755833333</min_angle>
+            <max_angle> 0.5235987755833333</max_angle>
           </vertical>
         </scan>
         <range>
