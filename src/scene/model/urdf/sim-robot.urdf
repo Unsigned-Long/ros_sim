@@ -100,8 +100,8 @@
         <cylinder length="0.05" radius="0.05"/>
       </geometry>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-      <material name="red">
-        <color rgba="1.0 0.0 0.0 0.8"/>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 0.8"/>
       </material>
     </visual>
     <collision>
@@ -132,8 +132,8 @@
         <box size="0.06 0.06 0.06"/>
       </geometry>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-      <material name="green">
-        <color rgba="0.0 1.0 0.0 0.8"/>
+      <material name="red">
+        <color rgba="1.0 0.0 0.0 0.8"/>
       </material>
     </visual>
     <collision>
@@ -164,8 +164,8 @@
         <box size="0.06 0.06 0.06"/>
       </geometry>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-      <material name="blue">
-        <color rgba="0.0 0.0 1.0 0.8"/>
+      <material name="green">
+        <color rgba="0.0 1.0 0.0 0.8"/>
       </material>
     </visual>
     <collision>
@@ -203,8 +203,8 @@
             <max_angle> 3.1415926535</max_angle>
           </horizontal>
           <vertical>
-            <samples>16</samples>
-            <resolution>2</resolution>
+            <samples>32</samples>
+            <resolution>1</resolution>
             <min_angle>-0.26179938779166667</min_angle>
             <max_angle> 0.26179938779166667</max_angle>
           </vertical>
@@ -265,7 +265,7 @@
   <gazebo>
     <plugin filename="libgazebo_ros_p3d.so" name="imu_pose">
       <alwaysOn>true</alwaysOn>
-      <updateRate>400.0</updateRate>
+      <updateRate>1000.0</updateRate>
       <bodyName>imu</bodyName>
       <topicName>imu_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>

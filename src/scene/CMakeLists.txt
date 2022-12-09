@@ -114,6 +114,8 @@ catkin_package(
         #  DEPENDS system_lib
 )
 
+find_package(Sophus)
+
 ###########
 ## Build ##
 ###########
@@ -155,6 +157,7 @@ add_executable(generate_actor src/generate_actor.cpp)
 target_link_libraries(
         sim_robot_state
         ${catkin_LIBRARIES}
+        Sophus::Sophus
 )
 
 target_include_directories(

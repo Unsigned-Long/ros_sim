@@ -23,7 +23,7 @@
   <gazebo>
     <plugin name="imu_pose" filename="libgazebo_ros_p3d.so">
       <alwaysOn>true</alwaysOn>
-      <updateRate>400.0</updateRate>
+      <updateRate>1000.0</updateRate>
       <bodyName>imu</bodyName>
       <topicName>imu_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>

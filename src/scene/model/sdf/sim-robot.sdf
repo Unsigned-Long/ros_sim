@@ -193,8 +193,8 @@
               <max_angle>3.14159</max_angle>
             </horizontal>
             <vertical>
-              <samples>16</samples>
-              <resolution>2</resolution>
+              <samples>32</samples>
+              <resolution>1</resolution>
               <min_angle>-0.261799</min_angle>
               <max_angle>0.261799</max_angle>
             </vertical>
@@ -299,7 +299,7 @@
     </plugin>
     <plugin name='imu_pose' filename='libgazebo_ros_p3d.so'>
       <alwaysOn>1</alwaysOn>
-      <updateRate>400.0</updateRate>
+      <updateRate>1000.0</updateRate>
       <topicName>imu_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>
       <frameName>map</frameName>

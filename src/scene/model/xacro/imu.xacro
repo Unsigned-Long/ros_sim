@@ -6,8 +6,8 @@
         <box size="${imu_box_size} ${imu_box_size} ${imu_box_size}" />
       </geometry>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-      <material name="green">
-        <color rgba="0.0 1.0 0.0 ${transparency}" />
+      <material name="red">
+        <color rgba="1.0 0.0 0.0 ${transparency}" />
       </material>
     </visual>
     <collision>
