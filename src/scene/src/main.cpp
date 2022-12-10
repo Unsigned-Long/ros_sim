@@ -64,39 +64,6 @@ struct Posed {
     }
 };
 
-void PublishGroundTruth(const gazebo_msgs::LinkStates::ConstPtr &msg,
-                        const Posed &LtoBF, ros::Publisher &lidar_ground_truth_pub,
-                        const Posed &ItoBF, ros::Publisher &imu_ground_truth_pub,
-                        const Posed &CtoBF, ros::Publisher &camera_ground_truth_pub) {
-    Posed BFtoM;
-    ros::Time time = ros::Time::now();
-    static ros::Time lastFrameTinestamp = time;
-    // 10HZ
-    if(time.toSec()-lastFrameTinestamp.toSec()<0.1-1E-9){
-        return;
-    }else{
-        lastFrameTinestamp = time;
-    }
-    for (int i = 0; i < msg->name.size(); ++i) {
-        if (msg->name.at(i) == "sim_robot::base_footprint") {
-            const auto &BFPose = msg->pose.at(i);
-            const auto &orientation = BFPose.orientation;
-            const auto &position = BFPose.position;
-            BFtoM = Posed(
-                    Eigen::Quaterniond(orientation.w, orientation.x, orientation.y, orientation.z),
-                    Eigen::Vector3d(position.x, position.y, position.z)
-            );
-            auto LtoM = Posed(BFtoM.pose * LtoBF.pose, time);
-            auto ItoM = Posed(BFtoM.pose * ItoBF.pose, time);
-            auto CtoM = Posed(BFtoM.pose * CtoBF.pose, time);
-            lidar_ground_truth_pub.publish(LtoM.ToOdometryMsg("lidar"));
-            imu_ground_truth_pub.publish(ItoM.ToOdometryMsg("imu"));
-            camera_ground_truth_pub.publish(CtoM.ToOdometryMsg("camera"));
-            break;
-        }
-    }
-}
-
 tf::StampedTransform GetTransform(const std::string &from, const std::string &to) {
     tf::TransformListener listener;
     tf::StampedTransform transform;
@@ -117,9 +84,16 @@ int main(int argc, char **argv) {
     LOG_VAR(ItoBF)
     LOG_VAR(CtoBF)
 
+    auto lidar_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/lidar_ground_truth", 10);
+    auto imu_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/imu_ground_truth", 10);
+    auto camera_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/camera_ground_truth", 10);
+
     tf::TransformBroadcaster dynamicBroadcaster;
-    auto base_footprint_to_map = nh.subscribe<nav_msgs::Odometry>(
-            "/base_footprint_ground_truth", 10, [&dynamicBroadcaster](const nav_msgs::Odometry::ConstPtr &msg) {
+    auto odomHandler = nh.subscribe<nav_msgs::Odometry>(
+            "/base_footprint_ground_truth", 20,
+            [&dynamicBroadcaster, &LtoBF, &lidar_ground_truth_pub, &ItoBF, &imu_ground_truth_pub, &CtoBF, &camera_ground_truth_pub](
+                    const nav_msgs::Odometry::ConstPtr &msg) {
+                // pub base_footprint to map
                 geometry_msgs::TransformStamped odom_trans;
                 odom_trans.header.frame_id = "map";
                 odom_trans.child_frame_id = "base_footprint";
@@ -132,25 +106,23 @@ int main(int argc, char **argv) {
                 odom_trans.transform.rotation = msg->pose.pose.orientation;
 
                 dynamicBroadcaster.sendTransform(odom_trans);
+
+                // other odometer
+                const auto &BFPose = msg->pose.pose;
+                const auto &orientation = BFPose.orientation;
+                const auto &position = BFPose.position;
+                Posed BFtoM = Posed(
+                        Eigen::Quaterniond(orientation.w, orientation.x, orientation.y, orientation.z),
+                        Eigen::Vector3d(position.x, position.y, position.z)
+                );
+
+                auto LtoM = Posed(BFtoM.pose * LtoBF.pose, msg->header.stamp);
+                auto ItoM = Posed(BFtoM.pose * ItoBF.pose, msg->header.stamp);
+                auto CtoM = Posed(BFtoM.pose * CtoBF.pose, msg->header.stamp);
+                lidar_ground_truth_pub.publish(LtoM.ToOdometryMsg("lidar"));
+                imu_ground_truth_pub.publish(ItoM.ToOdometryMsg("imu"));
+                camera_ground_truth_pub.publish(CtoM.ToOdometryMsg("camera"));
             });
-
-   auto lidar_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/lidar_ground_truth", 100);
-   auto imu_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/imu_ground_truth", 100);
-   auto camera_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/camera_ground_truth", 100);
-
-   auto ground_truth_handler = nh.subscribe<gazebo_msgs::LinkStates>(
-           "/gazebo/link_states", 100,
-           [&LtoBF, &lidar_ground_truth_pub, &ItoBF, &imu_ground_truth_pub, &CtoBF, &camera_ground_truth_pub](
-                   auto &&PH1) {
-               return PublishGroundTruth(
-                       std::forward<decltype(PH1)>(PH1),
-                       LtoBF, lidar_ground_truth_pub,
-                       ItoBF, imu_ground_truth_pub,
-                       CtoBF, camera_ground_truth_pub
-               );
-           }
-   );
-
     ros::spin();
     ros::shutdown();
 

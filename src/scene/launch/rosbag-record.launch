@@ -15,7 +15,7 @@
 
   <arg name="bag_prefix" value="sim" />
 
-  <arg name="bag_dur" value="35.0" />
+  <arg name="bag_dur" value="5.0" />
 
   <node pkg="rosbag" type="record" name="record" args="$(arg lidar_topic) $(arg imu_odom_topic) $(arg camera_odom_topic) $(arg lidar_odom_topic)
    -o $(find scene)/bag/$(arg bag_prefix) --duration=$(arg bag_dur)" />
