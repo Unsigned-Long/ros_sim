@@ -21,7 +21,7 @@
       </camera>
       <plugin name="gazebo_camera" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
-        <updateRate>0.0</updateRate>
+        <updateRate>10.0</updateRate>
         <cameraName>/sim_camera</cameraName>
         <imageTopicName>frame</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>

@@ -183,7 +183,7 @@
   <joint name="camera_to_base_link" type="fixed">
     <parent link="base_link"/>
     <child link="camera"/>
-    <origin rpy="0.0 0.0 0.0" xyz="0.08 0.0 0.0"/>
+    <origin rpy="0.0 1.57079632675 0.0" xyz="0.08 0.0 0.0"/>
     <axis xyz="0.0 0.0 1.0"/>
   </joint>
   <gazebo reference="camera">
@@ -265,7 +265,7 @@
   <gazebo>
     <plugin filename="libgazebo_ros_p3d.so" name="imu_pose">
       <alwaysOn>true</alwaysOn>
-      <updateRate>1000.0</updateRate>
+      <updateRate>10.0</updateRate>
       <bodyName>imu</bodyName>
       <topicName>imu_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>
@@ -296,7 +296,7 @@
       </camera>
       <plugin filename="libgazebo_ros_camera.so" name="gazebo_camera">
         <alwaysOn>true</alwaysOn>
-        <updateRate>0.0</updateRate>
+        <updateRate>10.0</updateRate>
         <cameraName>/sim_camera</cameraName>
         <imageTopicName>frame</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
