@@ -258,7 +258,7 @@
     </link>
     <plugin name='base_footprint_pose' filename='libgazebo_ros_p3d.so'>
       <alwaysOn>1</alwaysOn>
-      <updateRate>50.0</updateRate>
+      <updateRate>10.0</updateRate>
       <bodyName>base_footprint</bodyName>
       <topicName>base_footprint_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>
@@ -266,44 +266,18 @@
       <xyzOffsets>0 0 0</xyzOffsets>
       <rpyOffsets>0 0 0</rpyOffsets>
     </plugin>
-    <plugin name='lidar_pose' filename='libgazebo_ros_p3d.so'>
-      <alwaysOn>1</alwaysOn>
-      <updateRate>10.0</updateRate>
-      <topicName>lidar_ground_truth</topicName>
-      <gaussianNoise>0.0</gaussianNoise>
-      <frameName>map</frameName>
-      <xyzOffsets>0 0 0</xyzOffsets>
-      <rpyOffsets>0 0 0</rpyOffsets>
-      <bodyName>base_footprint</bodyName>
-      <xyzOffset>0 0 0.205</xyzOffset>
-      <rpyOffset>0 -0 0</rpyOffset>
-      <ignition::corrected_offsets>1</ignition::corrected_offsets>
-    </plugin>
-    <plugin name='imu_pose' filename='libgazebo_ros_p3d.so'>
-      <alwaysOn>1</alwaysOn>
-      <updateRate>10.0</updateRate>
-      <topicName>imu_ground_truth</topicName>
-      <gaussianNoise>0.0</gaussianNoise>
-      <frameName>map</frameName>
-      <xyzOffsets>0 0 0</xyzOffsets>
-      <rpyOffsets>0 0 0</rpyOffsets>
-      <bodyName>base_footprint</bodyName>
-      <xyzOffset>-0.08 0 0.08</xyzOffset>
-      <rpyOffset>0 -0 0</rpyOffset>
-      <ignition::corrected_offsets>1</ignition::corrected_offsets>
-    </plugin>
     <static>0</static>
-    <plugin name='camera_pose' filename='libgazebo_ros_p3d.so'>
+    <plugin name='base_link_pose' filename='libgazebo_ros_p3d.so'>
       <alwaysOn>1</alwaysOn>
       <updateRate>10.0</updateRate>
-      <topicName>camera_ground_truth</topicName>
+      <topicName>base_link_ground_truth</topicName>
       <gaussianNoise>0.0</gaussianNoise>
       <frameName>map</frameName>
       <xyzOffsets>0 0 0</xyzOffsets>
       <rpyOffsets>0 0 0</rpyOffsets>
       <bodyName>base_footprint</bodyName>
-      <xyzOffset>0.08 0 0.08</xyzOffset>
-      <rpyOffset>0 1.5708 -0</rpyOffset>
+      <xyzOffset>0 0 0.08</xyzOffset>
+      <rpyOffset>0 -0 0</rpyOffset>
       <ignition::corrected_offsets>1</ignition::corrected_offsets>
     </plugin>
   </model>

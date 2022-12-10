@@ -70,6 +70,13 @@ void PublishGroundTruth(const gazebo_msgs::LinkStates::ConstPtr &msg,
                         const Posed &CtoBF, ros::Publisher &camera_ground_truth_pub) {
     Posed BFtoM;
     ros::Time time = ros::Time::now();
+    static ros::Time lastFrameTinestamp = time;
+    // 10HZ
+    if(time.toSec()-lastFrameTinestamp.toSec()<0.1-1E-9){
+        return;
+    }else{
+        lastFrameTinestamp = time;
+    }
     for (int i = 0; i < msg->name.size(); ++i) {
         if (msg->name.at(i) == "sim_robot::base_footprint") {
             const auto &BFPose = msg->pose.at(i);
@@ -127,22 +134,22 @@ int main(int argc, char **argv) {
                 dynamicBroadcaster.sendTransform(odom_trans);
             });
 
-//    auto lidar_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/lidar_ground_truth", 100);
-//    auto imu_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/imu_ground_truth", 100);
-//    auto camera_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/camera_ground_truth", 100);
+   auto lidar_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/lidar_ground_truth", 100);
+   auto imu_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/imu_ground_truth", 100);
+   auto camera_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/camera_ground_truth", 100);
 
-//    auto ground_truth_handler = nh.subscribe<gazebo_msgs::LinkStates>(
-//            "/gazebo/link_states", 100,
-//            [&LtoBF, &lidar_ground_truth_pub, &ItoBF, &imu_ground_truth_pub, &CtoBF, &camera_ground_truth_pub](
-//                    auto &&PH1) {
-//                return PublishGroundTruth(
-//                        std::forward<decltype(PH1)>(PH1),
-//                        LtoBF, lidar_ground_truth_pub,
-//                        ItoBF, imu_ground_truth_pub,
-//                        CtoBF, camera_ground_truth_pub
-//                );
-//            }
-//    );
+   auto ground_truth_handler = nh.subscribe<gazebo_msgs::LinkStates>(
+           "/gazebo/link_states", 100,
+           [&LtoBF, &lidar_ground_truth_pub, &ItoBF, &imu_ground_truth_pub, &CtoBF, &camera_ground_truth_pub](
+                   auto &&PH1) {
+               return PublishGroundTruth(
+                       std::forward<decltype(PH1)>(PH1),
+                       LtoBF, lidar_ground_truth_pub,
+                       ItoBF, imu_ground_truth_pub,
+                       CtoBF, camera_ground_truth_pub
+               );
+           }
+   );
 
     ros::spin();
     ros::shutdown();
