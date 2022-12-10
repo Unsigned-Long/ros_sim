@@ -38,8 +38,10 @@ struct Posed {
     }
 
     friend std::ostream &operator<<(std::ostream &os, const Posed &posed) {
+        const static double RAD_TO_DEG = 180.0 / M_PI;
         os << "time: " << posed.time.toSec()
            << " q: " << posed.pose.unit_quaternion().coeffs().transpose()
+           << " euler: " << posed.pose.rotationMatrix().eulerAngles(0, 1, 2).transpose() * RAD_TO_DEG
            << " t: " << posed.pose.translation().transpose();
         return os;
     }
