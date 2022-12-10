@@ -79,10 +79,14 @@ int main(int argc, char **argv) {
     Posed LtoBF(GetTransform("lidar", "base_footprint"));
     Posed ItoBF(GetTransform("imu", "base_footprint"));
     Posed CtoBF(GetTransform("camera", "base_footprint"));
+    Posed LtoI(ItoBF.pose.inverse() * LtoBF.pose);
+    Posed CtoI(ItoBF.pose.inverse() * CtoBF.pose);
 
     LOG_VAR(LtoBF)
     LOG_VAR(ItoBF)
     LOG_VAR(CtoBF)
+    LOG_VAR(LtoI)
+    LOG_VAR(CtoI)
 
     auto lidar_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/lidar_ground_truth", 10);
     auto imu_ground_truth_pub = nh.advertise<nav_msgs::Odometry>("/imu_ground_truth", 10);
