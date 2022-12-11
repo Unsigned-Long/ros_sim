@@ -106,11 +106,11 @@ tinyxml2::XMLNode *GetSimRobotScriptFromDEA(const std::string &filename, tinyxml
                // 10.0(s) a circle [1.5 2.5]
                << 0.5 * std::sin(2.0 * M_PI * timeStamp / 10.0) + 2.0 << ' '
                // 15.0(s) a circle
-               << 80.0 * std::sin(2.0 * M_PI * timeStamp / 15.0) * degToRad << ' '
+               << 30.0 * std::sin(2.0 * M_PI * timeStamp / 10.0) * degToRad << ' '
                // 12.0(s) a circle
-               << 60.0 * std::cos(2.0 * M_PI * timeStamp / 15.0) * degToRad << ' '
+               << 30.0 * std::cos(2.0 * M_PI * timeStamp / 10.0) * degToRad << ' '
                // 10.0(s) a circle
-               << 360.0 * std::cos(2.0 * M_PI * timeStamp / 30.0) * degToRad;
+               << 360.0 * std::cos(2.0 * M_PI * timeStamp / 60.0) * degToRad;
         poseElem->InsertEndChild(doc.NewText(stream.str().c_str()));
         waypointElem->InsertEndChild(poseElem);
 
