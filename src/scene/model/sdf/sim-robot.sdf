@@ -9,7 +9,7 @@
           <ixy>0</ixy>
           <ixz>0</ixz>
           <iyy>0.00134188</iyy>
-          <iyz>0</iyz>
+          <iyz>-8.47033e-22</iyz>
           <izz>0.000998833</izz>
         </inertia>
       </inertial>
@@ -64,7 +64,7 @@
         </surface>
       </collision>
       <collision name='base_footprint_fixed_joint_lump__camera_collision_3'>
-        <pose>0.08 0 0.08 -1.5708 -0 -1.5708</pose>
+        <pose>0.08 0 0.08 -1.5708 -0.785398 -1.5708</pose>
         <geometry>
           <box>
             <size>0.06 0.06 0.06</size>
@@ -154,7 +154,7 @@
         </material>
       </visual>
       <visual name='base_footprint_fixed_joint_lump__camera_visual_4'>
-        <pose>0.08 0 0.08 -1.5708 -0 -1.5708</pose>
+        <pose>0.08 0 0.08 -1.5708 -0.785398 -1.5708</pose>
         <geometry>
           <box>
             <size>0.06 0.06 0.06</size>
@@ -253,7 +253,7 @@
           <distortionT1>0.0</distortionT1>
           <distortionT2>0.0</distortionT2>
         </plugin>
-        <pose>0.08 0 0.08 -1.5708 -0 -1.5708</pose>
+        <pose>0.08 0 0.08 -1.5708 -0.785398 -1.5708</pose>
       </sensor>
     </link>
     <plugin name='base_footprint_pose' filename='libgazebo_ros_p3d.so'>
